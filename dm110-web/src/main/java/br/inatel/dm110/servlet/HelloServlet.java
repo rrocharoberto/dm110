@@ -1,4 +1,4 @@
-package br.inatel.dm110.hello.servlet;
+package br.inatel.dm110.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

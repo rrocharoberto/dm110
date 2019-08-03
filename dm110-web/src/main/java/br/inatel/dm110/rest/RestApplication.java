@@ -1,4 +1,4 @@
-package br.inatel.dm110.hello.rest;
+package br.inatel.dm110.rest;
 
 import java.util.HashSet;
 import java.util.Set;
