@@ -4,10 +4,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 
 import br.inatel.dm110.api.HelloService;
 import br.inatel.dm110.api.MessageTO;
+import br.inatel.dm110.hello.interfaces.HelloRemote;
 
 @RequestScoped
 public class HelloServiceImpl implements HelloService {
@@ -17,9 +19,12 @@ public class HelloServiceImpl implements HelloService {
 	//test: in memory storage
 	static private Map<Integer, MessageTO> cache = new HashMap<>();
 
+	@EJB(lookup="ejb:dm110-ear-1.0/dm110-ejb-1.0/HelloBean!br.inatel.dm110.hello.interfaces.HelloRemote")
+	private HelloRemote helloBean;
+
 	@Override
 	public String sayHello(String name) {
-		String message = "Hello " + name;
+		String message = helloBean.sayHello(name);
 		return "<h1>" + message + "</h1>";
 	}
 
