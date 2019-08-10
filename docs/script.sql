@@ -1,9 +1,19 @@
-create table Product (
-    id integer not null,
-    name varchar(50) not null,
-    quantity integer not null default 0,
-    constraint pk_product primary key (id)
+CREATE TABLE ESTADO (
+  IBGE INTEGER NOT NULL,
+  SIGLA VARCHAR(2) NOT NULL,
+  NOME VARCHAR(30) NOT NULL,
+  AREA FLOAT NOT NULL,
+  PRIMARY KEY IBGE
 );
-create sequence seq_product;
 
-select * from product;
+CREATE TABLE CIDADE (
+  IBGE INTEGER NOT NULL,
+  NOME VARCHAR(30) NOT NULL,
+  AREA FLOAT NOT NULL,
+  UF_PK INTEGER NOT NULL,
+  PRIMARY KEY IBGE
+);
+
+ALTER TABLE CIDADE 
+  ADD CONSTRAINT UF_fk FOREIGN KEY (UF_PK) REFERENCES ESTADO (IBGE);
+
