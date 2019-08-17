@@ -30,6 +30,8 @@ public class IBGEBean implements IBGERemote, IBGELocal {
 		st.setNome(state.getNome());
 		st.setSigla(state.getSigla());
 		dao.insert(st);
+		
+		//enviar uma mensagem para o MDB
 	}
 	
 	@Override
