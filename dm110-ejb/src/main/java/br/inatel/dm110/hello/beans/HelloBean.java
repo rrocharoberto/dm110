@@ -1,7 +1,22 @@
 package br.inatel.dm110.hello.beans;
 
+import javax.ejb.Local;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 
-public class HelloBean {
+import br.inatel.dm110.hello.interfaces.HelloLocal;
+import br.inatel.dm110.hello.interfaces.HelloRemote;
 
+@Stateless
+@Remote(HelloRemote.class)
+@Local(HelloLocal.class)
+
+public class HelloBean implements HelloLocal, HelloRemote{
+
+	@Override
+	public String sayHello(String name) {
+		System.out.println("Chamou o Hello Bean: " + name);
+		return "Hello " + name + " !!!";
+	}
 }
 
