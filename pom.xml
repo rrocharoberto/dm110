@@ -4,11 +4,10 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
  
-  <!-- The Basics -->
   <name>DM 110 parent</name>
   <description>DM 110 JEE agregator</description>
 
-  <groupId>br.inatel.dm110</groupId>
+  <groupId>br.inatel.dm110.base</groupId>
   <artifactId>parent</artifactId>
   <version>1.0</version>
   <packaging>pom</packaging>
@@ -71,14 +70,13 @@
 			  <version>1.0</version>
 			  <type>jar</type>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
+			<version>8.0</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
