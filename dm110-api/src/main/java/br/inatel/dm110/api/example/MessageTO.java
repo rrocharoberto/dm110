@@ -1,4 +1,4 @@
-package br.inatel.dm110.api;
+package br.inatel.dm110.api.example;
 
 import java.io.Serializable;
 
@@ -34,4 +34,9 @@ public class MessageTO implements Serializable {
 		this.message = message;
 	}
 
+	@Override
+	public String toString() {
+		return "MessageTO [firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+	
 }

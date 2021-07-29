@@ -1,58 +1,47 @@
 package br.inatel.dm110.impl.example;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.core.Response;
 
-import br.inatel.dm110.api.MessageTO;
 import br.inatel.dm110.api.example.HelloService;
+import br.inatel.dm110.api.example.MessageTO;
 
 @RequestScoped
 public class HelloServiceImpl implements HelloService {
 
-	static private int count = 0;
+	// in memory cache
+	private HelloMemoryDAO dao = new HelloMemoryDAO();
 
-	// test: in memory storage
-	static private Map<Integer, MessageTO> cache = new HashMap<>();
+	private static Logger log = Logger.getLogger(HelloServiceImpl.class.getName());
 
 	@Override
 	public String sayHello(String name) {
-		String message = "Hello " + name;
-		return "<h1>" + message + "</h1>";
+		log.info("name: " + name);
+		return "Status ok. Hello " + name;
 	}
 
 	@Override
 	public Response getMessage(Integer id) {
-		if (cache.containsKey(id)) {
-			return Response.ok(cache.get(id)).build();
+		log.info("retrieving message: " + id);
+		MessageTO msg = dao.getMessage(id);
+		if (msg != null) {
+			return Response.ok(msg).build();
 		}
 		return Response.noContent().build();
 	}
 
 	@Override
-	public MessageTO postMessage(String first, String last) {
-		MessageTO result = new MessageTO();
-		result.setFirstName(first);
-		result.setLastName(last);
-		String message = String.format("Hello %s %s!!!", first, last);
-		result.setMessage(message);
-		return result;
+	public Response storeNewMessage(MessageTO message) {
+		log.info("storing message: " + message);
+		int id = dao.storeNewMessage(message);
+		return Response.ok(String.valueOf(id)).build();
 	}
 
 	@Override
-	public int storeNewMessage(MessageTO message) {
-		message.setMessage("Hello " + message.getFirstName() + " " + message.getLastName());
-		System.out.println("Message created: " + message.getMessage());
-		count++;
-		cache.put(count, message);
-		return count;
-	}
-
-	@Override
-	public Collection<MessageTO> getMessages() {
-		return cache.values();
+	public Response getAllMessages() {
+		log.info("retrieving all messages.");
+		return Response.ok(dao.getMessages()).build();
 	}
 }

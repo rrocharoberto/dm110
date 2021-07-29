@@ -6,7 +6,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.inatel.dm110.api.MessageTO;
+import br.inatel.dm110.api.example.MessageTO;
 
 public class HelloClient {
 
