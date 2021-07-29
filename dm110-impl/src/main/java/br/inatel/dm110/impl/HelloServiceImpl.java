@@ -5,16 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.core.Response;
 
-import br.inatel.dm110.api.HelloService;
 import br.inatel.dm110.api.MessageTO;
+import br.inatel.dm110.api.example.HelloService;
 
 @RequestScoped
 public class HelloServiceImpl implements HelloService {
 
 	static private int count = 0;
-	
-	//test: in memory storage
+
+	// test: in memory storage
 	static private Map<Integer, MessageTO> cache = new HashMap<>();
 
 	@Override
@@ -24,7 +25,19 @@ public class HelloServiceImpl implements HelloService {
 	}
 
 	@Override
-	public MessageTO message(String first, String last) {
+	public Response getMessage(Integer id) {
+		if (cache.containsKey(id)) {
+			return Response.ok(cache.get(id)).build();
+		}
+		return Response.noContent().build();
+	}
+
+	@Override
+	public MessageTO postMessage(String first, String last) {
+		return buildMessage(first, last);
+	}
+
+	private MessageTO buildMessage(String first, String last) {
 		MessageTO result = new MessageTO();
 		result.setFirstName(first);
 		result.setLastName(last);
@@ -41,7 +54,7 @@ public class HelloServiceImpl implements HelloService {
 		cache.put(count, message);
 		return count;
 	}
-	
+
 	@Override
 	public Collection<MessageTO> getMessages() {
 		return cache.values();
