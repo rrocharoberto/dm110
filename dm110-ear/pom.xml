@@ -34,10 +34,6 @@
 							<groupId>br.inatel.dm110</groupId>
 							<artifactId>dm110-impl</artifactId>
 						</jarModule>
-						<jarModule>
-							<groupId>br.inatel.dm110</groupId>
-							<artifactId>dm110-ejb-client</artifactId>
-						</jarModule>
 					</modules>
 				</configuration>
 			</plugin>
@@ -56,12 +52,6 @@
 			<type>ejb</type>
 		</dependency>
 
-		<dependency>
-			<groupId>br.inatel.dm110</groupId>
-			<artifactId>dm110-ejb-client</artifactId>
-			<scope>provided</scope>
-			<type>jar</type>
-		</dependency>
 		<dependency>
 			<groupId>br.inatel.dm110</groupId>
 			<artifactId>dm110-api</artifactId>

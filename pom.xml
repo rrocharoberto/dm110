@@ -19,7 +19,7 @@
   <modules>
     <module>dm110-ear</module>
     <module>dm110-ejb</module>
-    <module>dm110-ejb-client</module>
+    <module>dm110-app-client</module>
     <module>dm110-web</module>
     <module>dm110-api</module>
     <module>dm110-impl</module>
@@ -54,7 +54,7 @@
 		</dependency>
 		<dependency>
 			  <groupId>br.inatel.dm110</groupId>
-			  <artifactId>dm110-ejb-client</artifactId>
+			  <artifactId>dm110-app-client</artifactId>
 			  <version>1.0</version>
 			  <type>jar</type>
 		</dependency>

@@ -6,7 +6,6 @@
 		<project>dm110-web</project>
 		<project>dm110-ejb</project>
 		<project>dm110-api</project>
-		<project>dm110-ejb-client</project>
 		<project>dm110-impl</project>
 	</projects>
 	<buildSpec>

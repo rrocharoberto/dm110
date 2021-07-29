@@ -13,14 +13,13 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="/dm110-api"/>
-	<classpathentry kind="src" path="/dm110-ejb-client"/>
 	<classpathentry kind="var" path="M2_REPO/javax/javaee-api/7.0/javaee-api-7.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/sun/mail/javax.mail/1.5.0/javax.mail-1.5.0.jar"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">

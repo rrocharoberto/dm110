@@ -4,8 +4,8 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>DM 110 - EJB Client</name>
-	<description>EJB Client project of DM 110</description>
+	<name>DM 110 - App Client</name>
+	<description>App Client project of DM 110</description>
 	<properties></properties>
 	<parent>
 		<groupId>br.inatel.dm110.base</groupId>
@@ -14,7 +14,7 @@
 	</parent>
 
 	<groupId>br.inatel.dm110</groupId>
-	<artifactId>dm110-ejb-client</artifactId>
+	<artifactId>dm110-app-client</artifactId>
 	<packaging>jar</packaging>
 
 	<dependencies>
