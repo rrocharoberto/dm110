@@ -1,4 +1,4 @@
-package br.inatel.dm110.impl;
+package br.inatel.dm110.impl.example;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -34,10 +34,6 @@ public class HelloServiceImpl implements HelloService {
 
 	@Override
 	public MessageTO postMessage(String first, String last) {
-		return buildMessage(first, last);
-	}
-
-	private MessageTO buildMessage(String first, String last) {
 		MessageTO result = new MessageTO();
 		result.setFirstName(first);
 		result.setLastName(last);
