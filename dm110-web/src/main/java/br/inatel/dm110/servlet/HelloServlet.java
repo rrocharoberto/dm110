@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.inatel.dm110.interfaces.example.HelloRemote;
+import br.inatel.dm110.interfaces.example.HelloLocal;
 
 @WebServlet("/helloServlet")
 public class HelloServlet extends HttpServlet {
@@ -20,7 +20,7 @@ public class HelloServlet extends HttpServlet {
 	private static Logger log = Logger.getLogger(HelloServlet.class.getName());
 
 	@EJB(lookup="ejb:dm110-ear-1.0/dm110-ejb-1.0/HelloBean!br.inatel.dm110.hello.interfaces.HelloRemote")
-	private HelloRemote helloBean;
+	private HelloLocal helloBean;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

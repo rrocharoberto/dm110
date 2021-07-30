@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 
 import br.inatel.dm110.api.example.HelloService;
 import br.inatel.dm110.api.example.MessageTO;
-import br.inatel.dm110.interfaces.example.HelloRemote;
+import br.inatel.dm110.interfaces.example.HelloLocal;
 
 @RequestScoped
 public class HelloServiceImpl implements HelloService {
@@ -19,7 +19,7 @@ public class HelloServiceImpl implements HelloService {
 	private static Logger log = Logger.getLogger(HelloServiceImpl.class.getName());
 
 	@EJB(lookup="ejb:dm110-ear-1.0/dm110-ejb-1.0/HelloBean!br.inatel.dm110.hello.interfaces.HelloRemote")
-	private HelloRemote helloBean;
+	private HelloLocal helloBean;
 
 
 	@Override
