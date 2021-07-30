@@ -7,8 +7,8 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 
-import br.inatel.dm110.api.HelloService;
-import br.inatel.dm110.api.MessageTO;
+import br.inatel.dm110.api.example.HelloService;
+import br.inatel.dm110.api.example.MessageTO;
 import br.inatel.dm110.hello.interfaces.HelloRemote;
 
 @RequestScoped

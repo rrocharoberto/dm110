@@ -4,7 +4,6 @@
 	<comment>EJB project of DM 110. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
 	<projects>
 		<project>dm110-api</project>
-		<project>dm110-ejb-client</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

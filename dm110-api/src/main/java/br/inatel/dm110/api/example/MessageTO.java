@@ -1,4 +1,4 @@
-package br.inatel.dm110.api;
+package br.inatel.dm110.api.example;
 
 import java.io.Serializable;
 

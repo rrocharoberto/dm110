@@ -22,13 +22,7 @@
 			<artifactId>dm110-api</artifactId>
 			<type>jar</type>
 		</dependency>
-		<dependency>
-			<groupId>br.inatel.dm110</groupId>
-			<artifactId>dm110-ejb-client</artifactId>
-			<type>jar</type>
-		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
