@@ -1,8 +1,8 @@
-package br.inatel.dm110.ibge.interfaces;
+package br.inatel.dm110.interfaces.ibge;
 
 import java.util.List;
 
-import br.inatel.dm110.api.StateTO;
+import br.inatel.dm110.api.ibge.StateTO;
 
 public interface Ibge {
 

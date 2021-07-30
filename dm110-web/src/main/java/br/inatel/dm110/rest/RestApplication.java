@@ -6,8 +6,8 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import br.inatel.dm110.impl.HelloServiceImpl;
 import br.inatel.dm110.impl.IbgeServiceImpl;
+import br.inatel.dm110.impl.example.HelloServiceImpl;
 
 @ApplicationPath("/api")
 public class RestApplication extends Application {

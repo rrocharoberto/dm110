@@ -34,4 +34,9 @@ public class MessageTO implements Serializable {
 		this.message = message;
 	}
 
+	@Override
+	public String toString() {
+		return "MessageTO [firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+	
 }

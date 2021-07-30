@@ -1,13 +1,13 @@
-package br.inatel.dm110.hello.dao;
+package br.inatel.dm110.ibge.dao;
 
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
-import br.inatel.dm110.hello.entities.State;
+import br.inatel.dm110.ibge.entities.State;
 
 @Stateless
 public class IBGEDAO {
@@ -16,7 +16,7 @@ public class IBGEDAO {
 	private EntityManager em;
 
 	public List<State> listAll() {
-		Query query = em.createQuery("from State s", State.class);
+		TypedQuery<State> query = em.createQuery("from State s", State.class);
 		return query.getResultList();
 	}
 

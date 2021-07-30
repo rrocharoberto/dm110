@@ -1,4 +1,4 @@
-package br.inatel.dm110.hello.entities;
+package br.inatel.dm110.ibge.entities;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package br.inatel.dm110.hello.interfaces;
+package br.inatel.dm110.interfaces.example;
 
 public interface HelloRemote extends Hello {
 

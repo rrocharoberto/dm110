@@ -5,9 +5,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 
-import br.inatel.dm110.api.IbgeService;
-import br.inatel.dm110.api.StateTO;
-import br.inatel.dm110.ibge.interfaces.IbgeRemote;
+import br.inatel.dm110.api.ibge.IbgeService;
+import br.inatel.dm110.api.ibge.StateTO;
+import br.inatel.dm110.interfaces.ibge.IbgeRemote;
 
 @RequestScoped
 public class IbgeServiceImpl implements IbgeService {
