@@ -1,1 +1,1 @@
-# 2019-dm110
+# Projeto utilizado na disciplina DM110 - Desenvolvimento Java EE
