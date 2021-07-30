@@ -15,12 +15,12 @@ public class IBGEDAO {
 	@PersistenceContext(unitName = "ibge_pu")
 	private EntityManager em;
 
+	public void insert(State state) {
+		em.persist(state);
+	}
 	public List<State> listAll() {
 		TypedQuery<State> query = em.createQuery("from State s", State.class);
 		return query.getResultList();
 	}
 
-	public void insert(State state) {
-		em.persist(state);
-	}
 }
