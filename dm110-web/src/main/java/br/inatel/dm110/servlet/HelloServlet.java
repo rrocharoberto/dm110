@@ -19,7 +19,7 @@ public class HelloServlet extends HttpServlet {
 	private static final long serialVersionUID = -24118939727042992L;
 	private static Logger log = Logger.getLogger(HelloServlet.class.getName());
 
-	@EJB(lookup="ejb:dm110-ear-1.0/dm110-ejb-1.0/HelloBean!br.inatel.dm110.hello.interfaces.HelloRemote")
+	@EJB
 	private HelloLocal helloBean;
 
 	@Override

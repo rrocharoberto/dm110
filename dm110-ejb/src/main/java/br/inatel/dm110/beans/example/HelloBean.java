@@ -3,14 +3,16 @@ package br.inatel.dm110.beans.example;
 import java.util.logging.Logger;
 
 import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import br.inatel.dm110.interfaces.example.HelloLocal;
+import br.inatel.dm110.interfaces.example.HelloRemote;
 
 @Stateless
 @Local(HelloLocal.class)
-
-public class HelloBean implements HelloLocal {
+@Remote(HelloRemote.class)
+public class HelloBean implements HelloLocal, HelloRemote {
 
 	private static Logger log = Logger.getLogger(HelloBean.class.getName());
 

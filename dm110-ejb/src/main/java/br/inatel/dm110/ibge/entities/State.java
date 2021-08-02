@@ -7,8 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ESTADO")
+@Table(name = "ESTADO", schema = "public")
 public class State implements Serializable {
+
+	private static final long serialVersionUID = -3226154108429480413L;
 
 	public State() {} // default
 

@@ -7,13 +7,13 @@ import javax.enterprise.context.RequestScoped;
 
 import br.inatel.dm110.api.ibge.IbgeService;
 import br.inatel.dm110.api.ibge.StateTO;
-import br.inatel.dm110.interfaces.ibge.IbgeRemote;
+import br.inatel.dm110.interfaces.ibge.IbgeLocal;
 
 @RequestScoped
 public class IbgeServiceImpl implements IbgeService {
 
-	@EJB(lookup = "ejb:dm110-ear-1.0/dm110-ejb-1.0/IbgeBean!br.inatel.dm110.ibge.interfaces.IbgeRemote")
-	private IbgeRemote ibgeBean;
+	@EJB
+	private IbgeLocal ibgeBean;
 
 	@Override
 	public void salvarEstado(StateTO state) {
