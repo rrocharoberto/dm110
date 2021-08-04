@@ -6,47 +6,47 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import br.inatel.dm110.interfaces.example.HelloRemote;
+import br.inatel.dm110.interfaces.example.HelloLocal;
 
 public class HelloEJBClient {
 
 	public static void main(String[] args) throws Exception {
-		// Invoke a stateless bean
 		invokeStatelessBean();
-
 	}
 
-	/**
-	 * Looks up a stateless bean and invokes on it
-	 *
-	 * @throws NamingException
-	 */
 	private static void invokeStatelessBean() throws NamingException {
-		// Let's lookup the remote stateless object
-		final HelloRemote statelessRemoteHello = lookupRemoteStatelessHello();
-		System.out.println("Obtained a remote stateless hello for invocation");
-		// invoke on the remote object
-		String result = statelessRemoteHello.sayHello("Roberto");
-		System.out.println("Resultado da chamada remota: " + result);
+
+		final HelloLocal statelessHello = lookupStatelessHello();
+		if (statelessHello != null) {
+			// invoca a chamada no objeto remoto
+			String result = statelessHello.sayHello("Roberto");
+			System.out.println("Resultado da chamada ao stateless: " + result);
+		} else {
+			System.out.println("Objeto stateless remoto não encontrado.");
+		}
 	}
 
-	/**
-	 * Looks up and returns the proxy to remote stateless hello bean
-	 *
-	 * @return
-	 * @throws NamingException
-	 */
-	private static HelloRemote lookupRemoteStatelessHello() throws NamingException {
-		// ejb:dm110-ear-1.0/dm110-ejb-1.0/HelloBean!br.inatel.dm110.hello.interfaces.HelloRemote
-		final Properties jndiProperties = new Properties();
-		jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
-		final Context context = new InitialContext(jndiProperties);
-		final String appName = "dm110-ear-1.0";
-		final String moduleName = "dm110-ejb-1.0";
-		final String beanName = "HelloBean";
-		final String remoteInterfaceName = HelloRemote.class.getName();
-		return (HelloRemote) context
-				.lookup("ejb:" + appName + "/" + moduleName + "/" + beanName + "!" + remoteInterfaceName);
+	private static HelloLocal lookupStatelessHello() throws NamingException {
+		// faz o lookup do EJB (objeto) stateless
+
+		String appName = "dm110-ear-1.0";
+		String moduleName = "dm110-ejb-1.0";
+		String beanName = "HelloBean";
+		String interfaceName = HelloLocal.class.getName();
+
+		// nome completo do EJB
+		String jndiName = "ejb:" + appName + "/" + moduleName + "/" + beanName + "!" + interfaceName;
+		System.out.println("JNDI Name: " + jndiName);
+		Context context = createInitialContext();
+		return (HelloLocal) context.lookup(jndiName);
+	}
+
+	// configura as propriedades de acesso ao container JEE
+	private static Context createInitialContext() throws NamingException {
+		Properties jndiProperties = new Properties();
+		jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+		jndiProperties.put(Context.PROVIDER_URL, "remote+http://localhost:8080");
+		return new InitialContext(jndiProperties);
 	}
 
 }

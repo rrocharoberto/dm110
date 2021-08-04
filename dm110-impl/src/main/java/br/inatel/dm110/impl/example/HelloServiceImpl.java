@@ -44,12 +44,12 @@ public class HelloServiceImpl implements HelloService {
 		log.info("retrieving all messages.");
 		return Response.ok(dao.getMessages()).build();
 	}
-	
-	@Override
-	public MessageTO postMessage(String first, String last) {
-		log.info("Saving message from the form.");
-		MessageTO msg = dao.createMessage(first, last);
-		dao.storeNewMessage(msg);
-		return msg;
-	}
+
+//	@Override
+//	public MessageTO postMessage(String first, String last) {
+//		log.info("Saving message from the form.");
+//		MessageTO msg = dao.createMessage(first, last);
+//		dao.storeNewMessage(msg);
+//		return msg;
+//	}
 }

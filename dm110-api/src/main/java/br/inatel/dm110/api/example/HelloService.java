@@ -1,7 +1,6 @@
 package br.inatel.dm110.api.example;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -35,8 +34,6 @@ public interface HelloService {
 	Response getAllMessages();
 
 	// Example of receiving the post from a web form
-	@POST
-	@Path("/message")
-	@Produces(MediaType.APPLICATION_JSON)
-	MessageTO postMessage(@FormParam("first") String first, @FormParam("last") String last);
+	// @POST @Path("/message") @Produces(MediaType.APPLICATION_JSON)
+	// MessageTO postMessage(@FormParam("first") String first, @FormParam("last") String last);
 }
