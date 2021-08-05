@@ -19,7 +19,7 @@
   <modules>
     <module>dm110-ear</module>
     <module>dm110-ejb</module>
-    <module>dm110-ejb-client</module>
+    <module>dm110-app-client</module>
     <module>dm110-web</module>
     <module>dm110-api</module>
     <module>dm110-impl</module>
@@ -54,7 +54,7 @@
 		</dependency>
 		<dependency>
 			  <groupId>br.inatel.dm110</groupId>
-			  <artifactId>dm110-ejb-client</artifactId>
+			  <artifactId>dm110-app-client</artifactId>
 			  <version>1.0</version>
 			  <type>jar</type>
 		</dependency>
@@ -72,6 +72,28 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.5.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-ejb-client-bom</artifactId>
+			<version>24.0.1.Final</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.25.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>2.25.1</version>
+		</dependency>
+		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>8.0</version>
@@ -87,4 +109,3 @@
   </dependencyManagement>
 
 </project>
-

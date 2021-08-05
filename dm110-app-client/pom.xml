@@ -4,8 +4,8 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>DM 110 - EJB</name>
-	<description>EJB project of DM 110</description>
+	<name>DM 110 - App Client</name>
+	<description>App Client project of DM 110</description>
 	<properties></properties>
 	<parent>
 		<groupId>br.inatel.dm110.base</groupId>
@@ -14,21 +14,8 @@
 	</parent>
 
 	<groupId>br.inatel.dm110</groupId>
-	<artifactId>dm110-ejb</artifactId>
-	<packaging>ejb</packaging>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-ejb-plugin</artifactId>
-				<version>3.1.0</version>
-				<configuration>
-					<ejbVersion>3.0</ejbVersion>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<artifactId>dm110-app-client</artifactId>
+	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>
@@ -36,9 +23,19 @@
 			<artifactId>dm110-api</artifactId>
 			<type>jar</type>
 		</dependency>
+
 		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-ejb-client-bom</artifactId>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
