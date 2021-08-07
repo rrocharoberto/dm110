@@ -16,10 +16,10 @@ public interface IbgeService {
 	@Path("/state")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void salvarEstado(StateTO state);
-	
+
 	@GET
 	@Path("/states")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<StateTO> listarTodosEstados();
-	
+
 }
