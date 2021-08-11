@@ -2,52 +2,72 @@ package br.inatel.dm110.ibge.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ESTADO")
-public class State implements Serializable{
+@Table(name = "ESTADO", schema = "public")
+public class State implements Serializable {
 
-	public State() {} // default
+	private static final long serialVersionUID = -3226154108429480413L;
 
-	public State(int ibge, String sigla, String nome, float area) {
+	public State() {} //default constructor
+	
+	public State(int ibge, String initials, String name, float area) {
 		super();
 		this.ibge = ibge;
-		this.sigla = sigla;
-		this.nome = nome;
+		this.initials = initials;
+		this.name = name;
 		this.area = area;
 	}
-	
+
 	@Id
 	private int ibge;
-	private String sigla;
-	private String nome;
+
+	@Column(name = "SIGLA")
+	private String initials;
+
+	@Column(name = "NOME")
+	private String name;
 	private float area;
+
 	public int getIbge() {
 		return ibge;
 	}
+
 	public void setIbge(int ibge) {
 		this.ibge = ibge;
 	}
-	public String getSigla() {
-		return sigla;
+
+	public String getInitials() {
+		return initials;
 	}
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
+
+	public void setInitials(String initials) {
+		this.initials = initials;
 	}
-	public String getNome() {
-		return nome;
+
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+
+	public void setName(String name) {
+		this.name = name;
 	}
+
 	public float getArea() {
 		return area;
 	}
+
 	public void setArea(float area) {
 		this.area = area;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "State [ibge=" + ibge + ", initials=" + initials + ", name=" + name + ", area=" + area + "]";
+	}
+
 }

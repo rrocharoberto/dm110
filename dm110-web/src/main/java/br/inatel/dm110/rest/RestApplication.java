@@ -15,7 +15,7 @@ public class RestApplication extends Application {
 	@Override
 	public Set<Class<?>> getClasses() {
 		Set<Class<?>> classes = new HashSet<>();
-		classes.add(HelloServiceImpl.class);
+		classes.add(HelloServiceImpl.class); //register the class to publish the rest service
 		classes.add(IbgeServiceImpl.class);
 		return classes;
 	}

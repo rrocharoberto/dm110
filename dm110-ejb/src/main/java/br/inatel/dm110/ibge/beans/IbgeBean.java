@@ -10,6 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.modelmapper.ModelMapper;
+
 import br.inatel.dm110.api.ibge.StateTO;
 import br.inatel.dm110.ibge.entities.State;
 import br.inatel.dm110.interfaces.ibge.IbgeLocal;
@@ -19,36 +21,33 @@ import br.inatel.dm110.interfaces.ibge.IbgeLocal;
 public class IbgeBean implements IbgeLocal {
 
 	private static Logger log = Logger.getLogger(IbgeBean.class.getName());
-
+	
 	@PersistenceContext(unitName = "ibge_pu")
 	private EntityManager em;
-
+	
 	@Override
 	public void salvarEstado(StateTO state) {
-		log.info("Saving state: " + state);
-
-		State st = new State(state.getIbge(), state.getSigla(), state.getNome(), state.getArea());
-		em.persist(st);
+		State entity = new State(state.getIbge(), state.getSigla(), state.getNome(), state.getArea());
+		//State entity = new ModelMapper().map(state, State.class); //não mapeou o initials e o name
+		log.info("Salvando estado: " + entity);
+		em.persist(entity);
 	}
-
+	
 	@Override
 	public List<StateTO> listarTodosEstados() {
-		log.info("Getting all states.");
-
 		TypedQuery<State> query = em.createQuery("from State s", State.class);
-		List<State> stateList = query.getResultList();
-		return convertToTO(stateList);
+		List<State> states = query.getResultList();
+		return toCollectionAPIModel(states);
 	}
 
-	private List<StateTO> convertToTO(List<State> stateList) {
+	private List<StateTO> toCollectionAPIModel(List<State> stateList) {
 		return stateList.stream().map(s -> {
 			StateTO st = new StateTO();
 			st.setArea(s.getArea());
 			st.setIbge(s.getIbge());
-			st.setNome(s.getNome());
-			st.setSigla(s.getSigla());
+			st.setNome(s.getName());
+			st.setSigla(s.getInitials());
 			return st;
 		}).collect(Collectors.toList());
 	}
-
 }

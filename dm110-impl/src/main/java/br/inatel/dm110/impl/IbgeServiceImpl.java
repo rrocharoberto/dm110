@@ -14,12 +14,12 @@ public class IbgeServiceImpl implements IbgeService {
 
 	@EJB
 	private IbgeLocal ibgeBean;
-	
+
 	@Override
 	public void salvarEstado(StateTO state) {
 		ibgeBean.salvarEstado(state);
 	}
-	
+
 	@Override
 	public List<StateTO> listarTodosEstados() {
 		return ibgeBean.listarTodosEstados();
