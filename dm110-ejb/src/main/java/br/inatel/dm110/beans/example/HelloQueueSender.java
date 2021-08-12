@@ -11,12 +11,12 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 
 @Stateless
-public class HelloMessageSender {
+public class HelloQueueSender {
 
 	@Resource(lookup = "java:/ConnectionFactory")
 	private ConnectionFactory connectionFactory;
 
-	@Resource(lookup = "java:/jms/queue/dm110queue") // a queue será configurada no container
+	@Resource(lookup = "java:/jms/queue/dm110queue") // a fila está configurada no container
 	private Queue queue;
 
 	public void sendTextMessage(String text) {
