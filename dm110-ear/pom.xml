@@ -41,6 +41,13 @@
 	</build>
 
 	<dependencies>
+		
+		<dependency>
+			<groupId>br.inatel.dm110</groupId>
+			<artifactId>dm110-mdb</artifactId>
+			<type>ejb</type>
+		</dependency>
+		
 		<dependency>
 			<groupId>br.inatel.dm110</groupId>
 			<artifactId>dm110-web</artifactId>

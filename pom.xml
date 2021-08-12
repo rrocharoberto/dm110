@@ -23,6 +23,10 @@
     <module>dm110-web</module>
     <module>dm110-api</module>
     <module>dm110-impl</module>
+    
+    
+    <module>dm110-mdb</module>
+    
   </modules>
 
   <build>
@@ -40,6 +44,14 @@
 
   <dependencyManagement>
     <dependencies>
+    	
+		<dependency>
+			  <groupId>br.inatel.dm110</groupId>
+			  <artifactId>dm110-mdb</artifactId>
+			  <version>1.0</version>
+			  <type>ejb</type>
+		</dependency>
+		
 		<dependency>
 			  <groupId>br.inatel.dm110</groupId>
 			  <artifactId>dm110-web</artifactId>
