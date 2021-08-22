@@ -25,6 +25,9 @@ public class HelloBean implements HelloLocal, HelloRemote {
 	
 	@EJB
 	private HelloQueueSender queueSender;
+	
+	@EJB
+	private HelloTopicSender topicSender;
 
 	@Override
 	public String sayHello(String name) {
@@ -32,6 +35,7 @@ public class HelloBean implements HelloLocal, HelloRemote {
 		String msg = "Hello Session Bean greeting " + name + " !";
 		
 		queueSender.sendTextMessage(msg);
+		topicSender.sendTextMessage(msg);
 		
 		return msg;
 	}
