@@ -11,8 +11,8 @@ public class HelloMemoryDAO {
 
 	private static int count = 0;
 
-	// only for class example: in memory storage
-	private Map<Integer, MessageTO> cache = new HashMap<>();
+	// only for testing: in memory storage
+	private static Map<Integer, MessageTO> cache = new HashMap<>();
 
 	public MessageTO getMessage(Integer id) {
 		return cache.get(id);

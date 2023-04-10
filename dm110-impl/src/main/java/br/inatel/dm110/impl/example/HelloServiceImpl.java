@@ -2,33 +2,30 @@ package br.inatel.dm110.impl.example;
 
 import java.util.logging.Logger;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.core.Response;
 
 import br.inatel.dm110.api.example.HelloService;
 import br.inatel.dm110.api.example.MessageTO;
-import br.inatel.dm110.interfaces.example.HelloLocal;
 
 @RequestScoped
 public class HelloServiceImpl implements HelloService {
 
+	// in memory cache
+	private HelloMemoryDAO dao = new HelloMemoryDAO();
+
 	private static Logger log = Logger.getLogger(HelloServiceImpl.class.getName());
-	
-	@EJB
-	private HelloLocal helloBean;
 
 	@Override
 	public String sayHello(String name) {
 		log.info("name: " + name);
-		//return "Status ok. Hello " + name + " from Rest Service.";
-		return "Status ok. " + helloBean.sayHello(name);
+		return "Status ok. Hello " + name + " from Rest Service.";
 	}
 
 	@Override
 	public Response getMessage(Integer id) {
 		log.info("retrieving message: " + id);
-		MessageTO msg = helloBean.getMessage(id);
+		MessageTO msg = dao.getMessage(id);
 		if (msg != null) {
 			return Response.ok(msg).build();
 		}
@@ -38,14 +35,14 @@ public class HelloServiceImpl implements HelloService {
 	@Override
 	public Response storeNewMessage(MessageTO message) {
 		log.info("storing message: " + message);
-		int id = helloBean.storeNewMessage(message);
+		int id = dao.storeNewMessage(message);
 		return Response.ok(String.valueOf(id)).build();
 	}
 
 	@Override
 	public Response getAllMessages() {
 		log.info("retrieving all messages.");
-		return Response.ok(helloBean.getAllMessages()).build();
+		return Response.ok(dao.getMessages()).build();
 	}
 
 //	@Override

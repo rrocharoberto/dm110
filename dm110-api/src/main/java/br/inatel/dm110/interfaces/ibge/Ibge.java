@@ -6,7 +6,7 @@ import br.inatel.dm110.api.ibge.StateTO;
 
 public interface Ibge {
 
-	void salvarEstado(StateTO state);
+	public void salvarEstado(StateTO state);
 	
-	List<StateTO> listarTodosEstados();
+	public List<StateTO> listarTodosEstados();
 }
