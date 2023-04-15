@@ -35,8 +35,8 @@ public interface HelloService {
 	Response getAllMessages();
 
 	// Example of receiving the post call from a web form
-	// @POST
-	// @Path("/message")
-	// @Produces(MediaType.APPLICATION_JSON)
-	// MessageTO postMessage(@FormParam("first") String first, @FormParam("last") String last);
+	@POST
+	@Path("/message")
+	@Produces(MediaType.APPLICATION_JSON)
+	MessageTO postMessage(@FormParam("first") String first, @FormParam("last") String last);
 }

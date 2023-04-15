@@ -19,7 +19,7 @@ public class HelloServiceImpl implements HelloService {
 	@Override
 	public String sayHello(String name) {
 		log.info("name: " + name);
-		return "Status ok. Hello " + name;
+		return "Status ok. Hello " + name + " modificado";
 	}
 
 	@Override
@@ -43,5 +43,15 @@ public class HelloServiceImpl implements HelloService {
 	public Response getAllMessages() {
 		log.info("retrieving all messages.");
 		return Response.ok(dao.getMessages()).build();
+	}
+	
+	@Override
+	public MessageTO postMessage(String first, String last) {
+		log.info("postMessage: " + first + " " + last);
+		MessageTO message = new MessageTO();
+		message.setFirstName(first);
+		message.setLastName(last);
+		int id = dao.storeNewMessage(message);
+		return message;
 	}
 }
