@@ -29,7 +29,7 @@ public class HelloServlet extends HttpServlet {
 			} else {
 				out.println("<h2>Hi " + name + "</h2>");
 			}
-			out.println("Current date: " + new java.util.Date());
+			// out.println("Current date: " + new java.util.Date());
 		}
 	}
 }
