@@ -11,23 +11,23 @@ import br.inatel.dm110.interfaces.example.HelloLocal;
 public class HelloEJBClient {
 
 	public static void main(String[] args) throws Exception {
-		invokeStatelessBean();
+		invokeSessionBean();
 	}
 
-	private static void invokeStatelessBean() throws NamingException {
+	private static void invokeSessionBean() throws NamingException {
 
-		final HelloLocal statelessHello = lookupStatelessHello();
-		if (statelessHello != null) {
+		final HelloLocal hello = lookupSessionHello();
+		if (hello != null) {
 			// invoca a chamada no objeto remoto
-			String result = statelessHello.sayHello("Roberto");
-			System.out.println("Resultado da chamada ao stateless: " + result);
+			String result = hello.sayHello("Roberto");
+			System.out.println("Resultado da chamada ao session bean: " + result);
 		} else {
-			System.out.println("Objeto stateless remoto não encontrado.");
+			System.out.println("Objeto session bean remoto não encontrado.");
 		}
 	}
 
-	private static HelloLocal lookupStatelessHello() throws NamingException {
-		// faz o lookup do EJB (objeto) stateless
+	private static HelloLocal lookupSessionHello() throws NamingException {
+		// faz o lookup do EJB (objeto) session bean
 
 		String appName = "dm110-ear-1.0";
 		String moduleName = "dm110-ejb-1.0";
