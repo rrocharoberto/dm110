@@ -1,4 +1,4 @@
-package br.inatel.dm110.impl.example;
+package br.inatel.dm110.beans.example.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,7 @@ public class HelloMemoryDAO {
 	private static int count = 0;
 
 	// only for testing: in memory storage
-	private static Map<Integer, MessageTO> cache = new HashMap<>();
+	private Map<Integer, MessageTO> cache = new HashMap<>();
 
 	public MessageTO getMessage(Integer id) {
 		return cache.get(id);
