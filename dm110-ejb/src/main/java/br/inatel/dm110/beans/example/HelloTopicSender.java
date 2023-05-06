@@ -20,7 +20,7 @@ public class HelloTopicSender {
 
 	@Resource(lookup = "java:/jms/topic/dm110topic")
 	private Topic topic;
-	
+
 	private static Logger log = Logger.getLogger(HelloTopicSender.class.getName());
 
 	public void sendTextMessage(String text) {
@@ -30,7 +30,6 @@ public class HelloTopicSender {
 			MessageProducer msgProducer = session.createProducer(topic);
 			TextMessage txtMsg = session.createTextMessage(text);
 			msgProducer.send(txtMsg);
-			log.info("Enviou a mensagem: " + txtMsg);
 		} catch (JMSException e) {
 			System.out.println("Erro enviando mensagem: " + text);
 			throw new RuntimeException(e);

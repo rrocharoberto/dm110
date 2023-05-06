@@ -3,6 +3,7 @@ package br.inatel.dm110.beans.example;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -21,12 +22,20 @@ public class HelloBean implements HelloLocal, HelloRemote {
 
 	// in memory cache
 	private HelloMemoryDAO dao = new HelloMemoryDAO();
+	
+	@EJB
+	private HelloQueueSender queueSender;
+	
+	@EJB
+	private HelloTopicSender topicSender;
 
 	@Override
 	public String sayHello(String name) {
 		log.info("Chamou o Hello Bean: " + name);
 		String msg = "Hello Session Bean greeting " + name + " !";
 		//send the message to somewhere
+		queueSender.sendTextMessage(msg);
+		topicSender.sendTextMessage(msg);
 		return msg;
 	}
 

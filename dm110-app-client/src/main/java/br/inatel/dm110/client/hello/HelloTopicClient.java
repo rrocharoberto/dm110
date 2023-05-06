@@ -18,9 +18,9 @@ public class HelloTopicClient {
 	private static final String INITIAL_CONTEXT_FACTORY = "org.wildfly.naming.client.WildFlyInitialContextFactory";
 	private static final String PROVIDER_URL = "http-remoting://127.0.0.1:8080";
 	private static final String CONNECTION_FACTORY = "jms/RemoteConnectionFactory";
-	private static final String DESTINATION = "jms/topic/dm110topic";
-	private static final String USERNAME = "jmsuser";
-	private static final String PASSWORD = "senhajms";
+	private static final String DESTINATION = "java:jms/topic/dm110topic";
+	private static final String USERNAME = "roberto";
+	private static final String PASSWORD = "roberto123";
 
 	public static void main(String[] args) {
 		sendMessage("Olá de Topic Client.");
