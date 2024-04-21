@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Logger;
 
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,17 +22,38 @@ public class HelloServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String name = req.getParameter("name");
-		log.info("name: " + name);
-		resp.setContentType("text/html");
 
-		try (PrintWriter out = resp.getWriter()) {
-			out.println("<h1>Hello from Servlet!</h1>");
-			if (name == null) {
-				out.println("<h2>No name to say hi</h2>");
-			} else {
-				out.println("<h2>Hi " + name + "</h2>");
+		if(name != null) {
+			log.info("name: " + name);
+			req.setAttribute("name", name); //atributo para usar na página de resposta
+		} else {
+			HttpSession session = req.getSession();
+			Object nameSaved = session.getAttribute("nameSaved");
+			if (nameSaved != null) {
+				log.info("previousName: " + nameSaved);
+				req.setAttribute("previousName", nameSaved);
 			}
-			// out.println("Current date: " + new java.util.Date());
 		}
+		//req.setAttribute("currentDate", new java.util.Date());
+		forwardResponse("/hello_get_result.jsp", req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String nameSaved = req.getParameter("name");
+		log.info("nameSaved: " + nameSaved);
+
+		req.setAttribute("nameSaved", nameSaved); //usado na página JSP
+
+		HttpSession session = req.getSession();
+		session.setAttribute("nameSaved", nameSaved);
+
+		forwardResponse("/hello_post_result.jsp", req, resp);
+	}
+
+	private void forwardResponse(String path, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ServletContext context = getServletContext();
+		RequestDispatcher disp = context.getRequestDispatcher(path);
+		disp.forward(req, resp); // direciona para uma página JSP.
 	}
 }

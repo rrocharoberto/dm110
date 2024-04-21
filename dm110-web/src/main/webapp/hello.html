@@ -5,6 +5,14 @@
 <title>Hello Form</title>
 </head>
 <body>
+	<h2>Servet form:</h2>
+	<form action="helloServlet" method="POST">
+		<label>First name:</label>
+		<input type="text" name="name">
+		<input type="submit" value="Save name to say hello">
+	</form>
+	<a href="/dm110-web/helloServlet">Click here to say hello</a>
+	<h2>Rest API form:</h2>
 	<form action="api/hello/message" method="POST">
 		<label>First name:</label>
 		<input type="text" name="first">
