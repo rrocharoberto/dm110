@@ -2,8 +2,8 @@ package br.inatel.dm110.impl.example;
 
 import java.util.logging.Logger;
 
-import javax.enterprise.context.RequestScoped;
-import javax.ws.rs.core.Response;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.ws.rs.core.Response;
 
 import br.inatel.dm110.api.example.HelloService;
 import br.inatel.dm110.api.example.MessageTO;
@@ -19,7 +19,7 @@ public class HelloServiceImpl implements HelloService {
 	@Override
 	public String sayHello(String name) {
 		log.info("name: " + name);
-		return "Status ok. Hello " + name + " modificado";
+		return "Status ok. Hello " + name;// + " updated.";
 	}
 
 	@Override
