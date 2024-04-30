@@ -16,7 +16,7 @@ public interface HelloService {
 	@GET
 	@Path("/status/{name}")
 	@Produces(MediaType.TEXT_HTML)
-	String sayHello(@PathParam("name") String name);
+	String status(@PathParam("name") String name);
 
 	@GET
 	@Path("/message/{id}")

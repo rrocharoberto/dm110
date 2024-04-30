@@ -17,9 +17,9 @@ public class HelloServiceImpl implements HelloService {
 	private static Logger log = Logger.getLogger(HelloServiceImpl.class.getName());
 
 	@Override
-	public String sayHello(String name) {
+	public String status(String name) {
 		log.info("name: " + name);
-		return "Status ok. Hello " + name;// + " updated.";
+		return "Status ok. Name: " + name;
 	}
 
 	@Override
