@@ -1,4 +1,4 @@
-package br.inatel.dm110.client.hello;
+package br.inatel.dm110.client;
 
 import java.util.List;
 
@@ -11,12 +11,9 @@ import jakarta.ws.rs.core.Response;
 
 import br.inatel.dm110.api.example.MessageTO;
 
-public class HelloClient {
+public class MessageClient {
 
-	private static final String REST_BASE_URI = "http://localhost:8080/dm110-web/api/hello";
-	private static final String REST_URI_GET = REST_BASE_URI + "/message";
-	private static final String REST_URI_POST = REST_URI_GET;
-	private static final String REST_URI_GET_ALL = REST_BASE_URI + "/message";
+	private static final String REST_BASE_URI = "http://localhost:8080/dm110-web/api/message";
 
 	private static Client client = ClientBuilder.newClient();
 
@@ -28,16 +25,17 @@ public class HelloClient {
 		msg.setLastName("Rocha");
 		System.out.println("Result from POST: " + createMessage(msg));
 
-		System.out.println("Result from GET 1: " + getMessage(1));
-		System.out.println("Result from GET 2: " + getMessage(2));
+		System.out.println("Result from GET 1: " + getMessage(0));
 		
 		System.out.println("Result from getAllMessages(): ");
 		getAllMessages().stream().forEach((m) -> System.out.println(m));
+
+		System.out.println("Result from GET (non existing object): " + getMessage(1));
 	}
 
 	public static MessageTO getMessage(Integer id) {
 		return client
-			.target(REST_URI_GET)
+			.target(REST_BASE_URI)
 			.path(String.valueOf(id))
 			.request(MediaType.APPLICATION_JSON)
 			.get(MessageTO.class);
@@ -45,14 +43,14 @@ public class HelloClient {
 	
 	public static Response createMessage(MessageTO msg) {
 	    return client
-	      .target(REST_URI_POST)
+	      .target(REST_BASE_URI)
 	      .request(MediaType.APPLICATION_JSON)
 	      .post(Entity.entity(msg, MediaType.APPLICATION_JSON));
 	}
 
 	public static List<MessageTO> getAllMessages() {
 		List<MessageTO> list = client
-            .target(REST_URI_GET_ALL)
+            .target(REST_BASE_URI)
             .request(MediaType.APPLICATION_JSON)
             .get(Response.class)
             .readEntity(new GenericType<List<MessageTO>>() {});
