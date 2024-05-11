@@ -16,7 +16,7 @@ public class HelloClient {
 	private static final String REST_BASE_URI = "http://localhost:8080/dm110-web/api/hello";
 	private static final String REST_URI_GET = REST_BASE_URI + "/message";
 	private static final String REST_URI_POST = REST_URI_GET;
-	private static final String REST_URI_GET_ALL = REST_BASE_URI + "/messages";
+	private static final String REST_URI_GET_ALL = REST_BASE_URI + "/message";
 
 	private static Client client = ClientBuilder.newClient();
 

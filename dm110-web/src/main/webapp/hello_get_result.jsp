@@ -19,6 +19,6 @@
 	</c:if>
 	<!--<h2>Current date: ${currentDate}</h2>-->
 
-	<a href="/dm110-web/hello.html">Click here to go back</a>
+	<a href="/dm110-web/form.html">Click here to go back</a>
 </body>
 </html>

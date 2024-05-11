@@ -6,7 +6,7 @@ import java.util.Map;
 
 import br.inatel.dm110.api.example.MessageTO;
 
-public class HelloMemoryDAO {
+public class MessageMemoryDAO {
 
 	private static int count = 0;
 
