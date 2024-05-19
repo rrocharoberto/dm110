@@ -20,17 +20,14 @@ public class MessageClient {
 	public static void main(String[] args) {
 		System.out.println("Message service:");
 		
-		MessageTO msg = new MessageTO();
-		msg.setFirstName("Roberto");
-		msg.setLastName("Rocha");
+		MessageTO msg = new MessageTO("Roberto", "Rocha");
 		System.out.println("Result from POST: " + createMessage(msg));
 
-		System.out.println("Result from GET 1: " + getMessage(0));
-		
-		System.out.println("Result from getAllMessages(): ");
-		getAllMessages().stream().forEach((m) -> System.out.println(m));
-
+		System.out.println("Result from GET: " + getMessage(0));
 		System.out.println("Result from GET (non existing object): " + getMessage(1));
+
+		System.out.println("Result from getAllMessages(): ");
+		getAllMessages().stream().forEach(System.out::println);
 	}
 
 	public static MessageTO getMessage(Integer id) {

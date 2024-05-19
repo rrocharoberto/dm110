@@ -1,7 +1,6 @@
 package br.inatel.dm110.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Logger;
 
 import jakarta.servlet.RequestDispatcher;
@@ -34,7 +33,7 @@ public class HelloServlet extends HttpServlet {
 				req.setAttribute("previousName", nameSaved);
 			}
 		}
-		//req.setAttribute("currentDate", new java.util.Date());
+		//req.setAttribute("currentDate", new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new java.util.Date()));
 		forwardResponse("/hello_get_result.jsp", req, resp);
 	}
 

@@ -2,8 +2,6 @@ package br.inatel.dm110.api.example;
 
 import java.util.Collection;
 
-import jakarta.ws.rs.core.Response;
-
 public interface MessageInterface {
 
 	MessageTO getMessage(Integer id);

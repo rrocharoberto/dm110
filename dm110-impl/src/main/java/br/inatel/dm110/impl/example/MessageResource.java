@@ -13,7 +13,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 
 import br.inatel.dm110.api.example.MessageInterface;
 import br.inatel.dm110.api.example.MessageTO;
@@ -59,8 +58,8 @@ public class MessageResource implements MessageInterface {
 		return id;
 	}
 
-	@Override
 	// Example of receiving the post call from a web form
+	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public MessageTO postMessage(@FormParam("first") String first, @FormParam("last") String last) {
