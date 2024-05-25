@@ -40,6 +40,7 @@ public class HelloServlet extends HttpServlet {
 			if (nameSaved != null) {
 				log.info("previousName: " + nameSaved);
 				req.setAttribute("previousName", nameSaved);
+				req.setAttribute("greetings", helloBean.sayHello(nameSaved.toString()));
 			}
 		}
 		req.setAttribute("currentDate", new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new java.util.Date()));

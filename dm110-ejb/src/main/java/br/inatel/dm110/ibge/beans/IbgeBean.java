@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -18,7 +19,8 @@ import br.inatel.dm110.interfaces.ibge.IbgeLocal;
 @Local(IbgeLocal.class)
 public class IbgeBean implements IbgeLocal {
 
-	private static Logger log = Logger.getLogger(IbgeBean.class.getName());
+	@Inject
+	Logger log;
 	
 	@PersistenceContext(unitName = "ibge_pu")
 	private EntityManager em;

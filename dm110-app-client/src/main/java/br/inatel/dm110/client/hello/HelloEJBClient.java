@@ -6,6 +6,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import br.inatel.dm110.api.example.MessageTO;
 import br.inatel.dm110.interfaces.example.HelloRemote;
 
 public class HelloEJBClient {
@@ -19,7 +20,7 @@ public class HelloEJBClient {
 		final HelloRemote hello = lookupSessionHello();
 		if (hello != null) {
 			// invoca a chamada no objeto remoto
-			String result = hello.sayHello("Roberto");
+			MessageTO result = hello.sayHello("Roberto");
 			System.out.println("Resultado da chamada ao session bean: " + result);
 		} else {
 			System.out.println("Objeto session bean remoto não encontrado.");
