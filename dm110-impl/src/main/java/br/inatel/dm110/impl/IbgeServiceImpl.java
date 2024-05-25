@@ -2,8 +2,8 @@ package br.inatel.dm110.impl;
 
 import java.util.List;
 
-import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import jakarta.ejb.EJB;
+import jakarta.enterprise.context.RequestScoped;
 
 import br.inatel.dm110.api.ibge.IbgeService;
 import br.inatel.dm110.api.ibge.StateTO;

@@ -3,9 +3,9 @@ package br.inatel.dm110.beans.example;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.ejb.Local;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
+import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
 
 import br.inatel.dm110.api.example.MessageTO;
 import br.inatel.dm110.beans.example.dao.HelloMemoryDAO;
