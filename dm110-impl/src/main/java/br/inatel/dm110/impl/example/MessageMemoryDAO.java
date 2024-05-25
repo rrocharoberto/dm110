@@ -10,7 +10,7 @@ public class MessageMemoryDAO {
 
 	private static int count = 0;
 
-	// only for class example: in memory storage
+	// only for testing: in memory storage
 	private static Map<Integer, MessageTO> cache = new HashMap<>();
 
 	public MessageTO getMessage(Integer id) {
@@ -19,8 +19,10 @@ public class MessageMemoryDAO {
 
 	public int storeNewMessage(MessageTO message) {
 		message.setMessage("Hello " + message.getFirstName() + " " + message.getLastName());
-		cache.put(count++, message);
-		return count;
+		int id = count;
+		cache.put(id, message);
+		count++;
+		return id;
 	}
 
 	public Collection<MessageTO> getMessages() {
