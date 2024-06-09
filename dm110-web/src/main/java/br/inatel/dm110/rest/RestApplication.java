@@ -16,9 +16,11 @@ public class RestApplication extends Application {
 	@Override
 	public Set<Class<?>> getClasses() {
 		Set<Class<?>> classes = new HashSet<>();
-		classes.add(HelloResource.class); //register the class to publish the rest service
-		classes.add(MessageResource.class); //register the class to publish the rest service
-		classes.add(MessageExceptionMapper.class); //register the class to handle exceptions
+
+		//register the classes to publish the rest service
+		classes.add(HelloResource.class);
+		classes.add(MessageResource.class);
+		classes.add(MessageExceptionMapper.class);
 		return classes;
 	}
 }

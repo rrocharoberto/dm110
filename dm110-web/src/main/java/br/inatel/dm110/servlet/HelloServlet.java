@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -17,11 +18,14 @@ import jakarta.servlet.http.HttpServletResponse;
 public class HelloServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -24118939727042992L;
-	private static Logger log = Logger.getLogger(HelloServlet.class.getName());
+
+	@Inject
+	Logger log;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String name = req.getParameter("name");
+		log.info("name: " + name);
 
 		if(name != null) {
 			log.info("name: " + name);
