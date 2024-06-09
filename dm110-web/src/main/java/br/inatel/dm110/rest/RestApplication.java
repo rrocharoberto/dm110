@@ -6,7 +6,7 @@ import java.util.Set;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 
-import br.inatel.dm110.impl.IbgeServiceImpl;
+import br.inatel.dm110.impl.IbgeResource;
 import br.inatel.dm110.impl.example.HelloResource;
 import br.inatel.dm110.impl.example.MessageResource;
 import br.inatel.dm110.impl.example.support.MessageExceptionMapper;
@@ -17,10 +17,12 @@ public class RestApplication extends Application {
 	@Override
 	public Set<Class<?>> getClasses() {
 		Set<Class<?>> classes = new HashSet<>();
-		classes.add(IbgeServiceImpl.class);
-		classes.add(HelloResource.class); //register the class to publish the rest service
-		classes.add(MessageResource.class); //register the class to publish the rest service
-		classes.add(MessageExceptionMapper.class); //register the class to handle exceptions
+
+		//register the classes to publish the rest service
+		classes.add(IbgeResource.class);
+		classes.add(HelloResource.class); 
+		classes.add(MessageResource.class);
+		classes.add(MessageExceptionMapper.class);
 		return classes;
 	}
 }

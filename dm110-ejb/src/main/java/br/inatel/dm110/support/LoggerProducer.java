@@ -1,12 +1,10 @@
-package br.inatel.dm110.impl.example.support;
+package br.inatel.dm110.support;
 
 import java.util.logging.Logger;
 
-import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
 import jakarta.enterprise.inject.spi.InjectionPoint;
 
-@Dependent
 public class LoggerProducer {
 
   @Produces

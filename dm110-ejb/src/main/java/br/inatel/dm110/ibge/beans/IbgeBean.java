@@ -2,18 +2,17 @@ package br.inatel.dm110.ibge.beans;
 
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
+import br.inatel.dm110.api.ibge.StateTO;
+import br.inatel.dm110.ibge.entities.State;
+import br.inatel.dm110.ibge.support.IbgeConverter;
+import br.inatel.dm110.interfaces.ibge.IbgeLocal;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
-
-import br.inatel.dm110.api.ibge.StateTO;
-import br.inatel.dm110.ibge.entities.State;
-import br.inatel.dm110.interfaces.ibge.IbgeLocal;
 
 @Stateless	
 @Local(IbgeLocal.class)
@@ -26,30 +25,19 @@ public class IbgeBean implements IbgeLocal {
 	private EntityManager em;
 	
 	@Override
-	public void salvarEstado(StateTO state) {
-		log.info("Salvando o state: " + state.getNome());
-		State entity = new State(state.getIbge(), state.getSigla(), state.getNome(), state.getArea());
+	public void salvarEstado(StateTO to) {
+		log.info("Salvando o state: " + to.getNome());
+		State entity = IbgeConverter.toEntity(to);
 		em.persist(entity);
 	}
 	
 	@Override
 	public List<StateTO> listarTodosEstados() {
 		log.info("Consultando todos os objetos State");
-		TypedQuery<State> query = em.createQuery("select s from State s", State.class);
 		
-		return toCollectionAPIModel(query.getResultList());
-	}
-
-	private List<StateTO> toCollectionAPIModel(List<State> stateList) {
-		return stateList.stream().map(IbgeBean::toStateTO).collect(Collectors.toList());
-	}
-	
-	public static StateTO toStateTO(State state) {
-		StateTO to = new StateTO();
-		to.setArea(state.getArea());
-		to.setIbge(state.getIbge());
-		to.setNome(state.getNome());
-		to.setSigla(state.getSigla());
-		return to;
+		String hql = "select s from State s";
+		TypedQuery<State> query = em.createQuery(hql, State.class);
+		
+		return IbgeConverter.toTOList(query.getResultList());
 	}
 }

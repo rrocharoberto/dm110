@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
 import jakarta.ejb.EJB;
+import jakarta.inject.Inject;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -20,7 +21,9 @@ import br.inatel.dm110.interfaces.example.HelloLocal;
 public class HelloServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -24118939727042992L;
-	private static Logger log = Logger.getLogger(HelloServlet.class.getName());
+	
+	@Inject
+	Logger log;
 	
 	@EJB
 	private HelloLocal helloBean;
