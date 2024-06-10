@@ -1,6 +1,5 @@
 package br.inatel.dm110.client.hello;
 
-import java.util.List;
 import java.util.Properties;
 
 import javax.naming.Context;
@@ -13,32 +12,23 @@ import br.inatel.dm110.interfaces.example.HelloRemote;
 public class HelloEJBClient {
 
 	public static void main(String[] args) throws Exception {
-		invokeStatelessBean();
+		invokeSessionBean();
 	}
 
-	private static void invokeStatelessBean() throws NamingException {
+	private static void invokeSessionBean() throws NamingException {
 
-		final HelloRemote statelessHello = lookupStatelessHello();
-		if (statelessHello != null) {
+		final HelloRemote hello = lookupSessionHello();
+		if (hello != null) {
 			// invoca a chamada no objeto remoto
-			String result = statelessHello.sayHello("João");
-			System.out.println("Resultado da chamada ao stateless: " + result);
-
-			MessageTO newMsg = new MessageTO();
-			newMsg.setFirstName("João");
-			newMsg.setLastName("Silva");
-			int id = statelessHello.storeNewMessage(newMsg);
-			System.out.println("Id da mensagem: " + id);
-
-			List<MessageTO> resp = statelessHello.getAllMessages();
-			System.out.println(resp);
+			MessageTO result = hello.sayHello("Roberto");
+			System.out.println("Resultado da chamada ao session bean: " + result);
 		} else {
-			System.out.println("Objeto stateless remoto não encontrado.");
+			System.out.println("Objeto session bean remoto não encontrado.");
 		}
 	}
 
-	private static HelloRemote lookupStatelessHello() throws NamingException {
-		// faz o lookup do EJB (objeto) stateless
+	private static HelloRemote lookupSessionHello() throws NamingException {
+		// faz o lookup do EJB (objeto) session bean
 
 		String appName = "dm110-ear-1.0";
 		String moduleName = "dm110-ejb-1.0";

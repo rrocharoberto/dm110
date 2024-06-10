@@ -2,15 +2,15 @@ package br.inatel.dm110.beans.example;
 
 import java.util.logging.Logger;
 
-import javax.annotation.Resource;
-import javax.ejb.Stateless;
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-import javax.jms.Topic;
+import jakarta.annotation.Resource;
+import jakarta.ejb.Stateless;
+import jakarta.jms.Connection;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSException;
+import jakarta.jms.MessageProducer;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
 
 @Stateless
 public class HelloTopicSender {

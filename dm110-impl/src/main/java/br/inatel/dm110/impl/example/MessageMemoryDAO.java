@@ -1,18 +1,17 @@
 package br.inatel.dm110.impl.example;
 
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import br.inatel.dm110.api.example.MessageTO;
 
-public class HelloMemoryDAO {
+public class MessageMemoryDAO {
 
 	private static int count = 0;
 
-	// only for class example: in memory storage
-	private Map<Integer, MessageTO> cache = new HashMap<>();
+	// only for testing: in memory storage
+	private static Map<Integer, MessageTO> cache = new HashMap<>();
 
 	public MessageTO getMessage(Integer id) {
 		return cache.get(id);
@@ -26,8 +25,8 @@ public class HelloMemoryDAO {
 		return id;
 	}
 
-	public List<MessageTO> getMessages() {
-		return cache.values().stream().collect(Collectors.toList());
+	public Collection<MessageTO> getMessages() {
+		return cache.values();
 	}
 
 	public MessageTO createMessage(String first, String last) {
@@ -39,4 +38,3 @@ public class HelloMemoryDAO {
 		return result;
 	}
 }
-

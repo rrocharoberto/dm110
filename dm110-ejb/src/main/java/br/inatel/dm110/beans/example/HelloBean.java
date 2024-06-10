@@ -1,27 +1,23 @@
 package br.inatel.dm110.beans.example;
 
-import java.util.List;
 import java.util.logging.Logger;
 
-import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
 
+import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 import br.inatel.dm110.api.example.MessageTO;
-import br.inatel.dm110.impl.example.HelloMemoryDAO;
 import br.inatel.dm110.interfaces.example.HelloLocal;
 import br.inatel.dm110.interfaces.example.HelloRemote;
 
 @Stateless
-@Local(HelloLocal.class)
-@Remote(HelloRemote.class)
 public class HelloBean implements HelloLocal, HelloRemote {
 
-	private static Logger log = Logger.getLogger(HelloBean.class.getName());
-
-	// in memory cache
-	private HelloMemoryDAO dao = new HelloMemoryDAO();
+	@Inject
+	Logger log;
 	
 	@EJB
 	private HelloQueueSender queueSender;
@@ -29,33 +25,21 @@ public class HelloBean implements HelloLocal, HelloRemote {
 	@EJB
 	private HelloTopicSender topicSender;
 
+	public String status() {
+		log.info("Status endpoint called.");
+		return "Hello Session Bean Status ok.";
+	}
+
 	@Override
-	public String sayHello(String name) {
+	public MessageTO sayHello(String name) {
 		log.info("Chamou o Hello Bean: " + name);
-		String msg = "Hello Session Bean greeting " + name + " !";
+		String msgStr = "Hello Session Bean greeting " + name + " !";
 		//send the message to somewhere
-		queueSender.sendTextMessage(msg);
-		topicSender.sendTextMessage(msg);
+		queueSender.sendTextMessage(msgStr);
+		topicSender.sendTextMessage(msgStr);
+
+		MessageTO msg = new MessageTO(name, "");
+		msg.setMessage(msgStr);
 		return msg;
-	}
-
-	@Override
-	public MessageTO getMessage(Integer id) {
-		log.info("retrieving message: " + id);
-		MessageTO msg = dao.getMessage(id);
-		return msg;
-	}
-
-	@Override
-	public int storeNewMessage(MessageTO message) {
-		log.info("storing message: " + message);
-		int id = dao.storeNewMessage(message);
-		return id;
-	}
-
-	@Override
-	public List<MessageTO> getAllMessages() {
-		log.info("retrieving all messages.");
-		return dao.getMessages();
 	}
 }

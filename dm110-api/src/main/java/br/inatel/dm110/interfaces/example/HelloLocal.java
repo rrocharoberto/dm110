@@ -1,5 +1,9 @@
 package br.inatel.dm110.interfaces.example;
 
-public interface HelloLocal extends Hello {
+import br.inatel.dm110.api.example.HelloInterface;
+import jakarta.ejb.Local;
+
+@Local
+public interface HelloLocal extends HelloInterface {
 
 }
