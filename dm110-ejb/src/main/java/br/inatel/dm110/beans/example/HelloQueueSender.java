@@ -1,7 +1,11 @@
 package br.inatel.dm110.beans.example;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 import jakarta.jms.Connection;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.JMSException;
@@ -18,6 +22,9 @@ public class HelloQueueSender {
 
 	@Resource(lookup = "java:/jms/queue/dm110queue")
 	private Queue queue;
+	
+	@Inject
+	Logger log;
 
 	public void sendTextMessage(String text) {
 		try {
@@ -27,6 +34,7 @@ public class HelloQueueSender {
 			TextMessage txtMsg = session.createTextMessage(text);
 			msgProducer.send(txtMsg);
 		} catch (JMSException e) {
+			log.log(Level.SEVERE, "Erro enviando mensagem: " + text);
 			throw new RuntimeException(e);
 		}
 	}

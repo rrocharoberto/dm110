@@ -4,18 +4,24 @@ import java.util.logging.Logger;
 
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
+import jakarta.inject.Inject;
 import jakarta.jms.JMSException;
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 import jakarta.jms.TextMessage;
 
 @MessageDriven(activationConfig = {
-		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
-		@ActivationConfigProperty(propertyName = "destination", propertyValue = "java:/jms/queue/dm110queue") })
+		@ActivationConfigProperty(
+				propertyName = "destinationType", 
+				propertyValue = "jakarta.jms.Queue"),
+		@ActivationConfigProperty(
+				propertyName = "destination", 
+				propertyValue = "java:/jms/queue/dm110queue") })
 
 public class HelloQueueMDB implements MessageListener {
 
-	private static Logger log = Logger.getLogger(HelloQueueMDB.class.getName());
+	@Inject
+	Logger log;
 
 	@Override
 	public void onMessage(Message message) {
