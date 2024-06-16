@@ -1,9 +1,6 @@
 package br.inatel.dm110.client.hello;
 
-import java.util.Properties;
-
 import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import br.inatel.dm110.api.example.MessageTO;
@@ -38,16 +35,7 @@ public class HelloEJBClient {
 		// nome completo do EJB
 		String jndiName = "ejb:" + appName + "/" + moduleName + "/" + beanName + "!" + interfaceName;
 		System.out.println("JNDI Name: " + jndiName);
-		Context context = createInitialContext();
+		Context context = ClientHelper.createInitialContext();
 		return (HelloRemote) context.lookup(jndiName);
 	}
-
-	// configura as propriedades de acesso ao container JEE
-	private static Context createInitialContext() throws NamingException {
-		Properties jndiProperties = new Properties();
-		jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
-		jndiProperties.put(Context.PROVIDER_URL, "remote+http://localhost:8080");
-		return new InitialContext(jndiProperties);
-	}
-
 }

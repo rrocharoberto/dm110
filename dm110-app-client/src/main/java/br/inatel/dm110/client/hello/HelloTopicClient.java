@@ -1,87 +1,72 @@
 package br.inatel.dm110.client.hello;
 
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.jms.Destination;
+import javax.jms.JMSConsumer;
+import javax.jms.JMSContext;
+import javax.jms.JMSProducer;
+import javax.jms.TopicConnectionFactory;
 import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import jakarta.jms.ConnectionFactory;
-import jakarta.jms.Destination;
-import jakarta.jms.JMSContext;
-import jakarta.jms.JMSProducer;
-
 public class HelloTopicClient {
+	
 	private static final Logger log = Logger.getLogger(HelloTopicClient.class.getName());
 
-	private static final String INITIAL_CONTEXT_FACTORY = "org.wildfly.naming.client.WildFlyInitialContextFactory";
-	private static final String PROVIDER_URL = "http-remoting://127.0.0.1:8080";
 	private static final String CONNECTION_FACTORY = "jms/RemoteConnectionFactory";
 	private static final String DESTINATION = "java:jms/topic/dm110topic";
-	private static final String USERNAME = "roberto";
-	private static final String PASSWORD = "roberto123";
+	private static final String USERNAME = "jmsuser";
+	private static final String PASSWORD = "senhajms";
 
 	public static void main(String[] args) {
 		sendMessage("Olá de Topic Client.");
 	}
 
 	public static void sendMessage(String message) {
-
 		Context initialContext = null;
-
+		JMSContext jmsContext = null;
 		try {
-			initialContext = getContext();
-
-			// Faz lookup da factory
-			ConnectionFactory connectionFactory = (ConnectionFactory) initialContext.lookup(CONNECTION_FACTORY);
-			System.out.println("connectionFactory ok");
-
+			initialContext = ClientHelper.createInitialContext();
+			jmsContext = createContext(initialContext);
+			log.info("Context ok");
+			
 			// Faz lookup do tópico
 			Destination destination = (Destination) initialContext.lookup(DESTINATION);
-			log.info("destination ok");
+			log.info("Destination ok");
 
-			try (JMSContext context = connectionFactory.createContext(USERNAME, PASSWORD)) {
-				log.info("context ok");
-				
-				JMSProducer producer = context.createProducer();
-				log.info("producer ok");
+			JMSProducer producer = jmsContext.createProducer();
+			log.info("JMSProducer ok");
 
-				log.info("Enviando mensagem: " + message);
-				producer.send(destination, message);
-				System.out.println("Enviou mensagem com sucesso ao tópico.");
+			log.info("Enviando mensagem: " + message);
+			producer.send(destination, message);
+			log.info("Enviou mensagem com sucesso ao tópico.");
 
-//				// Create the JMS consumer
-//				JMSConsumer consumer = context.createConsumer(DESTINATION);
-//				// Receive the message that were sent
-//				String text = consumer.receiveBody(String.class, 5000);
-//				log.info("Received message with content " + text);
-			}
 		} catch (NamingException e) {
 			log.log(Level.SEVERE, "Erro enviando mensagem ao tópico.", e);
 		} finally {
-			if (initialContext != null) {
-				try {
-					initialContext.close();
-				} catch (NamingException e) {
-					log.severe(e.getMessage());
-				}
-			}
+			ClientHelper.closeJMSContext(jmsContext);
+			ClientHelper.closeInitialContext(initialContext);
 		}
 	}
 
-	private static Context getContext() throws NamingException {
-		Context initialContext = null;
+	private static JMSContext createContext(Context initialContext) throws NamingException {
+		// Faz lookup da factory
+		TopicConnectionFactory connectionFactory = (TopicConnectionFactory) initialContext.lookup(CONNECTION_FACTORY);
+		log.info("ConnectionFactory ok");
 
-		// Set up the namingContext for the JNDI lookup
-		final Properties env = new Properties();
-		env.put(Context.INITIAL_CONTEXT_FACTORY, INITIAL_CONTEXT_FACTORY);
-		env.put(Context.PROVIDER_URL, PROVIDER_URL);
-		env.put(Context.SECURITY_PRINCIPAL, USERNAME);
-		env.put(Context.SECURITY_CREDENTIALS, PASSWORD);
-		
-		initialContext = new InitialContext(env);
-		return initialContext;
+		JMSContext JMScontext = connectionFactory.createContext(USERNAME, PASSWORD);
+		log.info("JMSContext ok");
+		return JMScontext;
 	}
+
+//	private static void receiveMessage(JMSContext jmsContext, Destination destination) {
+//		 // Create the JMS consumer
+//		 JMSConsumer consumer = jmsContext.createConsumer(destination);
+//		 // Receive the message that were sent
+//		 String text = consumer.receiveBody(String.class, 5000);
+//		 log.info("Mensagem recebida: " + text);
+//	}
+
 }
