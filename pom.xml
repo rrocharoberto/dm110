@@ -26,6 +26,7 @@
     <module>dm110-api</module>
     <module>dm110-impl</module>
     
+    <module>dm110-receiver-ear</module>
     <module>dm110-mdb</module>
   </modules>
 

@@ -4,8 +4,8 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>DM 110 - EAR</name>
-	<description>Main JEE project of DM 110</description>
+	<name>DM 110 Receiver - EAR</name>
+	<description>Message Receiver JEE project of DM 110</description>
 	<properties></properties>
 	<parent>
 		<groupId>br.inatel.dm110.base</groupId>
@@ -14,7 +14,7 @@
 	</parent>
 
 	<groupId>br.inatel.dm110</groupId>
-	<artifactId>dm110-ear</artifactId>
+	<artifactId>dm110-receiver-ear</artifactId>
 	<packaging>ear</packaging>
 
 	<build>
@@ -39,27 +39,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>br.inatel.dm110</groupId>
-			<artifactId>dm110-web</artifactId>
-			<type>war</type>
-		</dependency>
-		<dependency>
-			<groupId>br.inatel.dm110</groupId>
-			<artifactId>dm110-ejb</artifactId>
+			<artifactId>dm110-mdb</artifactId>
 			<type>ejb</type>
 		</dependency>
-
-		<dependency>
-			<groupId>br.inatel.dm110</groupId>
-			<artifactId>dm110-api</artifactId>
-			<scope>provided</scope>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>br.inatel.dm110</groupId>
-			<artifactId>dm110-impl</artifactId>
-			<scope>provided</scope>
-			<type>jar</type>
-		</dependency>
-
 	</dependencies>
 </project>
