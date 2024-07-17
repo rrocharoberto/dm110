@@ -22,8 +22,9 @@ public class HelloBean implements HelloLocal, HelloRemote {
 	@Override
 	public MessageTO sayHello(String name) {
 		log.info("Chamou o Hello Bean: " + name);
+		String msgStr = "Hello Session Bean greeting " + name + " !";
 		MessageTO msg = new MessageTO(name, "");
-		msg.setMessage("Hello Session Bean greeting " + name + " !");
+		msg.setMessage(msgStr);
 		return msg;
 	}
 }
