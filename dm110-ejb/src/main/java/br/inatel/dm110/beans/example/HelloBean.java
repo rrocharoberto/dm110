@@ -9,11 +9,12 @@ import br.inatel.dm110.interfaces.example.HelloLocal;
 import br.inatel.dm110.interfaces.example.HelloRemote;
 
 @Stateless
-public class HelloBean implements HelloLocal, HelloRemote {
+public class HelloBean implements HelloLocal {
 
 	@Inject
 	Logger log;
 
+	@Override
 	public String status() {
 		log.info("Status endpoint called.");
 		return "Hello Session Bean Status ok.";
