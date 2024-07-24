@@ -6,12 +6,9 @@ import java.util.logging.Logger;
 import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
-import jakarta.jms.Connection;
 import jakarta.jms.ConnectionFactory;
-import jakarta.jms.JMSException;
-import jakarta.jms.MessageProducer;
+import jakarta.jms.JMSContext;
 import jakarta.jms.Queue;
-import jakarta.jms.Session;
 import jakarta.jms.TextMessage;
 
 @Stateless
@@ -27,13 +24,10 @@ public class HelloQueueSender {
 	Logger log;
 
 	public void sendTextMessage(String text) {
-		try {
-			Connection conn = connectionFactory.createConnection();
-			Session session = conn.createSession();
-			MessageProducer msgProducer = session.createProducer(queue);
-			TextMessage txtMsg = session.createTextMessage(text);
-			msgProducer.send(txtMsg);
-		} catch (JMSException e) {
+		try (JMSContext context = connectionFactory.createContext();) {
+			TextMessage txtMsg = context.createTextMessage(text);
+			context.createProducer().send(queue, txtMsg);
+		} catch (Exception e) {
 			log.log(Level.SEVERE, "Erro enviando mensagem: " + text);
 			throw new RuntimeException(e);
 		}
