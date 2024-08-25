@@ -38,7 +38,7 @@ public class HelloServlet extends HttpServlet {
 				req.setAttribute("previousName", nameSaved);
 			}
 		}
-		req.setAttribute("currentDate", new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new java.util.Date()));
+		// req.setAttribute("currentDate", new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new java.util.Date()));
 		forwardResponse("/hello_get_result.jsp", req, resp);
 	}
 

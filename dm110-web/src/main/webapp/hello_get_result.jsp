@@ -17,7 +17,7 @@
 	<c:if test="${not empty name}">
 		<h2>Hi ${name}</h2>
 	</c:if>
-	<h3>Current date: ${currentDate}</h3>
+	<!--h3>Current date: ${currentDate}</h3-->
 
 	<a href="/dm110-web/form_servlet.html">Click here to go back</a>
 </body>

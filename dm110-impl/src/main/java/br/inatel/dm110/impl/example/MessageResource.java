@@ -35,18 +35,18 @@ public class MessageResource implements MessageInterface {
 		return dao.getMessages();
 	}
 	
-	@Override
-	@GET
-	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public MessageTO getMessage(@PathParam("id") Integer id) {
-		log.info("Retrieving message with id: " + id);
-		MessageTO msg = dao.getMessage(id);
-		if (msg == null) {
-			throw new MessageException("Message not found with id: " + id);
-		}
-		return msg;
-	}
+	// @Override
+	// @GET
+	// @Path("/{id}")
+	// @Produces(MediaType.APPLICATION_JSON)
+	// public MessageTO getMessage(@PathParam("id") Integer id) {
+	// 	log.info("Retrieving message with id: " + id);
+	// 	MessageTO msg = dao.getMessage(id);
+	// 	if (msg == null) {
+	// 		throw new MessageException("Message not found with id: " + id);
+	// 	}
+	// 	return msg;
+	// }
 
 	@Override
 	@POST
@@ -59,15 +59,15 @@ public class MessageResource implements MessageInterface {
 	}
 
 	// Example of receiving the post call from a web form
-	@Override
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	public MessageTO postMessage(@FormParam("first") String first, @FormParam("last") String last) {
-		log.info("Storing form message: " + first + " " + last);
-		MessageTO message = new MessageTO();
-		message.setFirstName(first);
-		message.setLastName(last);
-		int id = dao.storeNewMessage(message);
-		return message;
-	}
+	// @Override
+	// @POST
+	// @Produces(MediaType.APPLICATION_JSON)
+	// public MessageTO postMessage(@FormParam("first") String first, @FormParam("last") String last) {
+	// 	log.info("Storing form message: " + first + " " + last);
+	// 	MessageTO message = new MessageTO();
+	// 	message.setFirstName(first);
+	// 	message.setLastName(last);
+	// 	int id = dao.storeNewMessage(message);
+	// 	return message;
+	// }
 }
