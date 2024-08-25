@@ -14,18 +14,18 @@ public class HelloBean implements HelloLocal {
 	@Inject
 	Logger log;
 
-	@Override
-	public String status() {
-		log.info("Status endpoint called.");
-		return "Hello Session Bean Status ok.";
-	}
+	// @Override
+	// public String status() {
+	// 	log.info("Status endpoint called.");
+	// 	return "Hello Session Bean Status ok.";
+	// }
 	
-	@Override
-	public MessageTO sayHello(String name) {
-		log.info("Chamou o Hello Bean: " + name);
-		String msgStr = "Hello Session Bean greeting " + name + " !";
-		MessageTO msg = new MessageTO(name, "");
-		msg.setMessage(msgStr);
-		return msg;
-	}
+	// @Override
+	// public MessageTO sayHello(String name) {
+	// 	log.info("Chamou o Hello Bean: " + name);
+	// 	String msgStr = "Hello Session Bean greeting " + name + " !";
+	// 	MessageTO msg = new MessageTO(name, "");
+	// 	msg.setMessage(msgStr);
+	// 	return msg;
+	// }
 }

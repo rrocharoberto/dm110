@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IbgeInterface {
 
-	public void salvarEstado(StateTO state);
+	// public void salvarEstado(StateTO state);
 
-	public List<StateTO> listarTodosEstados();
+	// public List<StateTO> listarTodosEstados();
 }

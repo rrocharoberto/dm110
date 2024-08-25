@@ -19,24 +19,24 @@ public class HelloResource implements HelloInterface {
 	@Inject
 	Logger log;
 
-	@Override
-	@GET
-	@Path("/status")
-	@Produces(MediaType.TEXT_HTML)
-	public String status() {
-		log.info("Status endpoint called.");
-		return "Status ok.";
-	}
+	// @Override
+	// @GET
+	// @Path("/status")
+	// @Produces(MediaType.TEXT_HTML)
+	// public String status() {
+	// 	log.info("Status endpoint called.");
+	// 	return "Status ok.";
+	// }
 
-	@Override
-	@GET
-	@Path("/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public MessageTO sayHello(@PathParam("name") String name) {
-		log.info("Saying hello to: " + name);
+	// @Override
+	// @GET
+	// @Path("/{name}")
+	// @Produces(MediaType.APPLICATION_JSON)
+	// public MessageTO sayHello(@PathParam("name") String name) {
+	// 	log.info("Saying hello to: " + name);
 
-		MessageTO msg = new MessageTO(name, "");
-		msg.setMessage("Hello " + name + "!");
-		return msg;
-	}
+	// 	MessageTO msg = new MessageTO(name, "");
+	// 	msg.setMessage("Hello " + name + "!");
+	// 	return msg;
+	// }
 }

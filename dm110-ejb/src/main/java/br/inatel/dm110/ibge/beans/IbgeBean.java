@@ -21,23 +21,23 @@ public class IbgeBean implements IbgeLocal {
 	@Inject
 	Logger log;
 	
-	@PersistenceContext(unitName = "ibge_pu")
-	private EntityManager em;
+	// @PersistenceContext(unitName = "ibge_pu")
+	// private EntityManager em;
 	
-	@Override
-	public void salvarEstado(StateTO to) {
-		log.info("Salvando o state: " + to.getNome());
-		State entity = IbgeConverter.toEntity(to);
-		em.persist(entity);
-	}
+	// @Override
+	// public void salvarEstado(StateTO to) {
+	// 	log.info("Salvando o state: " + to.getNome());
+	// 	State entity = IbgeConverter.toEntity(to);
+	// 	em.persist(entity);
+	// }
 	
-	@Override
-	public List<StateTO> listarTodosEstados() {
-		log.info("Consultando todos os objetos State");
+	// @Override
+	// public List<StateTO> listarTodosEstados() {
+	// 	log.info("Consultando todos os objetos State");
 		
-		String hql = "select s from State s";
-		TypedQuery<State> query = em.createQuery(hql, State.class);
+	// 	String hql = "select s from State s";
+	// 	TypedQuery<State> query = em.createQuery(hql, State.class);
 		
-		return IbgeConverter.toTOList(query.getResultList());
-	}
+	// 	return IbgeConverter.toTOList(query.getResultList());
+	// }
 }
