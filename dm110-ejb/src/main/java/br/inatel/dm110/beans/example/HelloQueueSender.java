@@ -14,22 +14,12 @@ import jakarta.jms.TextMessage;
 @Stateless
 public class HelloQueueSender {
 
-	@Resource(lookup = "java:/ConnectionFactory")
-	private ConnectionFactory connectionFactory;
-
-	@Resource(lookup = "java:/jms/queue/dm110queue")
-	private Queue queue;
-	
-	@Inject
-	Logger log;
+	// TODO: create attributes
 
 	public void sendTextMessage(String text) {
-		try (JMSContext context = connectionFactory.createContext();) {
-			TextMessage txtMsg = context.createTextMessage(text);
-			context.createProducer().send(queue, txtMsg);
-		} catch (Exception e) {
-			log.log(Level.SEVERE, "Erro enviando mensagem: " + text);
-			throw new RuntimeException(e);
-		}
+		// TODO: implement it
 	}
+
+	@Inject
+	Logger log;
 }

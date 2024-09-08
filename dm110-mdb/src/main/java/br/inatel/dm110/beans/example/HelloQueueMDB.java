@@ -10,30 +10,15 @@ import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 import jakarta.jms.TextMessage;
 
-@MessageDriven(activationConfig = {
-		@ActivationConfigProperty(
-				propertyName = "destinationType", 
-				propertyValue = "jakarta.jms.Queue"),
-		@ActivationConfigProperty(
-				propertyName = "destination", 
-				propertyValue = "java:/jms/queue/dm110queue") })
-
+//TODO: configure annotation
 public class HelloQueueMDB implements MessageListener {
-
-	@Inject
-	Logger log;
 
 	@Override
 	public void onMessage(Message message) {
-		// processamento da mensagem
-		try {
-			if (message instanceof TextMessage) {
-				TextMessage txtMessage = (TextMessage) message;
-				String text = txtMessage.getText();
-				log.info("Mensagem recebida da fila: " + text);
-			}
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
+		//processamento da mensagem
+		//TODO: implement it
 	}
+	
+	@Inject
+	Logger log;
 }

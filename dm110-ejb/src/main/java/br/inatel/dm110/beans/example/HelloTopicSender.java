@@ -14,22 +14,12 @@ import jakarta.jms.Topic;
 @Stateless
 public class HelloTopicSender {
 
-	@Resource(lookup = "java:/ConnectionFactory")
-	private ConnectionFactory connectionFactory; // igual à fila
+	// TODO: create attributes
 
-	@Resource(lookup = "java:/jms/topic/dm110topic")
-	private Topic topic;
+	public void sendTextMessage(String text) {
+		// TODO: implement it
+	}
 
 	@Inject
 	Logger log;
-
-	public void sendTextMessage(String text) {
-		try (JMSContext context = connectionFactory.createContext();) {
-			TextMessage txtMsg = context.createTextMessage(text);
-			context.createProducer().send(topic, txtMsg);
-		} catch (Exception e) {
-			log.log(Level.SEVERE, "Erro enviando mensagem: " + text);
-			throw new RuntimeException(e);
-		}
-	}
 }

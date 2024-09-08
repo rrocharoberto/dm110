@@ -18,7 +18,7 @@ public class HelloTopicClient {
 	private static final String CONNECTION_FACTORY = "jms/RemoteConnectionFactory";
 	private static final String DESTINATION = "java:jms/topic/dm110topic";
 	private static final String USERNAME = "jmsuser";
-	private static final String PASSWORD = "senhajms";
+	private static final String PASSWORD = "senhajms"; // use environment variable for security compliance
 
 	public static void main(String[] args) {
 		sendMessage("Olá de Topic Client.");
@@ -30,7 +30,6 @@ public class HelloTopicClient {
 		try {
 			initialContext = ClientHelper.createInitialContext();
 			jmsContext = createContext(initialContext);
-			log.info("Context ok");
 			
 			// Faz lookup do tópico
 			Destination destination = (Destination) initialContext.lookup(DESTINATION);
