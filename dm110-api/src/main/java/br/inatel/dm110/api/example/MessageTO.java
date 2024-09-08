@@ -1,7 +1,5 @@
 package br.inatel.dm110.api.example;
 
-import java.io.Serializable;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,9 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MessageTO implements Serializable {
-
-	private static final long serialVersionUID = -5106558229027863908L;
+public class MessageTO {
 
 	public MessageTO(String firstName, String lastName) {
 		this.firstName = firstName;
