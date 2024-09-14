@@ -23,10 +23,10 @@ public class MessageExceptionMapper implements ExceptionMapper<MessageException>
         log.log(Level.INFO, "Handling MessageException: " + exception.getMessage());
 
         StandardError error = new StandardError(
-            Status.NOT_FOUND.getStatusCode(), 
+            Status.BAD_REQUEST.getStatusCode(), 
             exception.getMessage());
 
-        return Response.status(Status.NOT_FOUND)
+        return Response.status(Status.BAD_REQUEST)
                 .entity(error)
                 .type(MediaType.APPLICATION_JSON)
                 .build();
