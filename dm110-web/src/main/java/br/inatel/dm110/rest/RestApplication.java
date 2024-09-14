@@ -18,9 +18,9 @@ public class RestApplication extends Application {
 	public Set<Class<?>> getClasses() {
 		Set<Class<?>> classes = new HashSet<>();
 
-		//register the classes to publish the rest service
-		// classes.add(IbgeResource.class);
-		classes.add(HelloResource.class); 
+		// register the classes to publish the rest service
+		classes.add(IbgeResource.class);
+		classes.add(HelloResource.class);
 		classes.add(MessageResource.class);
 		classes.add(MessageExceptionMapper.class);
 		return classes;

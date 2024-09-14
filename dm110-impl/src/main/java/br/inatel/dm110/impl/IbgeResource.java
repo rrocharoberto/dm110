@@ -18,22 +18,22 @@ import br.inatel.dm110.interfaces.ibge.IbgeLocal;
 @Path("/ibge")
 public class IbgeResource implements IbgeInterface {
 
-	// @EJB
-	// private IbgeLocal ibgeBean;
+	@EJB
+	private IbgeLocal ibgeBean;
 
-	// @POST
-	// @Path("/state")
-	// @Consumes(MediaType.APPLICATION_JSON)
-	// @Override
-	// public void salvarEstado(StateTO state) {
-	// 	ibgeBean.salvarEstado(state);
-	// }
+	@POST
+	@Path("/state")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Override
+	public void salvarEstado(StateTO state) {
+		ibgeBean.salvarEstado(state);
+	}
 
-	// @GET
-	// @Path("/state")
-	// @Produces(MediaType.APPLICATION_JSON)
-	// @Override
-	// public List<StateTO> listarTodosEstados() {
-	// 	return ibgeBean.listarTodosEstados();
-	// }
+	@GET
+	@Path("/state")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Override
+	public List<StateTO> listarTodosEstados() {
+		return ibgeBean.listarTodosEstados();
+	}
 }
