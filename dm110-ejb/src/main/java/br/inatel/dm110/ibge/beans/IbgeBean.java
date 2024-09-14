@@ -7,7 +7,9 @@ import br.inatel.dm110.api.ibge.StateTO;
 import br.inatel.dm110.ibge.entities.State;
 import br.inatel.dm110.ibge.support.IbgeConverter;
 import br.inatel.dm110.interfaces.ibge.IbgeLocal;
+import br.inatel.dm110.interfaces.ibge.IbgeRemote;
 import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -16,7 +18,8 @@ import jakarta.persistence.TypedQuery;
 
 @Stateless
 @Local(IbgeLocal.class)
-public class IbgeBean implements IbgeLocal {
+@Remote(IbgeRemote.class)
+public class IbgeBean implements IbgeLocal, IbgeRemote {
 
 	@Inject
 	Logger log;
