@@ -25,8 +25,7 @@ public class HelloQueueSender {
 			TextMessage txtMsg = context.createTextMessage(text);
 			context.createProducer().send(queue, txtMsg);
 		} catch (Exception e) {
-			// handle exception properly
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Error sending message: " + text, e);
 		}
 	}
 

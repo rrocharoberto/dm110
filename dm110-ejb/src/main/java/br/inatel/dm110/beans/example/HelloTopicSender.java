@@ -24,7 +24,7 @@ public class HelloTopicSender {
 			TextMessage txtMsg = context.createTextMessage(text);
 			context.createProducer().send(topic, txtMsg);
 		} catch (Exception e) {
-			// handle the exception properly
+			log.log(Level.SEVERE, "Error sending message: " + text, e);
 		}
 	}
 
