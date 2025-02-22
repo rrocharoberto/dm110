@@ -31,7 +31,7 @@ public class HelloServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String name = req.getParameter("name");
-		log.info("name: " + name);
+		log.info("Running doGet with name: " + name);
 
 		if (name != null) {
 			log.info("name: " + name);
@@ -41,7 +41,7 @@ public class HelloServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			Object nameSaved = session.getAttribute("nameSaved");
 			if (nameSaved != null) {
-				log.info("previousName: " + nameSaved);
+				log.info("nameSaved: " + nameSaved);
 				req.setAttribute("previousName", nameSaved);
 				req.setAttribute("greetings", helloBean.sayHello(nameSaved.toString()));
 			}
@@ -52,13 +52,13 @@ public class HelloServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String nameSaved = req.getParameter("name");
-		log.info("nameSaved: " + nameSaved);
+		String name = req.getParameter("name");
+		log.info("Running doPost with nameSaved: " + name);
 
-		req.setAttribute("nameSaved", nameSaved); // usado na página JSP
+		req.setAttribute("nameSaved", name); // usado na página JSP
 
 		HttpSession session = req.getSession();
-		session.setAttribute("nameSaved", nameSaved);
+		session.setAttribute("nameSaved", name); //stateful: will be used in next servlet call
 
 		forwardResponse("/hello_post_result.jsp", req, resp);
 	}

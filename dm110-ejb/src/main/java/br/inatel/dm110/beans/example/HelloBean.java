@@ -16,13 +16,13 @@ public class HelloBean implements HelloLocal, HelloRemote {
 
 	@Override
 	public String status() {
-		log.info("Status endpoint called.");
+		log.info("Running status method in HelloBean.");
 		return "Hello Session Bean Status ok.";
 	}
 
 	@Override
 	public MessageTO sayHello(String name) {
-		log.info("Chamou o Hello Bean: " + name);
+		log.info("Running sayHello method in HelloBean with name: " + name);
 		String msgStr = "Hello Session Bean greeting " + name + " !";
 		MessageTO msg = new MessageTO(name, "");
 		msg.setMessage(msgStr);

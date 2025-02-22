@@ -29,14 +29,14 @@ public class IbgeBean implements IbgeLocal, IbgeRemote {
 
 	@Override
 	public void salvarEstado(StateTO to) {
-		log.info("Salvando o state: " + to.getNome());
+		log.info("Saving the state: " + to.getNome() + " to the database");
 		State entity = IbgeConverter.toEntity(to);
 		em.persist(entity);
 	}
 
 	@Override
 	public List<StateTO> listarTodosEstados() {
-		log.info("Consultando todos os objetos State");
+		log.info("Getting all State objects from database");
 
 		String hql = "select s from State s";
 		TypedQuery<State> query = em.createQuery(hql, State.class);

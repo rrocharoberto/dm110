@@ -9,14 +9,15 @@
 	<h1>Hello from Servlet!</h1>
 
 	<c:if test="${(empty name) and (empty previousName)}">
-		<h2>I don't have a name to say hi.</h2>
+		<h2>No name nor previousName.</h2>
 	</c:if>
 	<c:if test="${not empty previousName}">
-		<h2>Hi using previous name ${previousName}</h2>
+		<h2>Previous name: ${previousName}</h2>
 	</c:if>
 	<c:if test="${not empty name}">
-		<h2>Hi ${name}</h2>
+		<h2>Current name: ${name}</h2>
 	</c:if>
+	<h2>Message from the bean: ${greetings}</h2>
 	<h3>Current date: ${currentDate}</h3>
 
 	<a href="/dm110-web/form_servlet.html">Click here to go back</a>
