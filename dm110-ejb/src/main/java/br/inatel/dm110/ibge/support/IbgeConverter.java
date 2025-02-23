@@ -11,7 +11,7 @@ public class IbgeConverter {
 	public static StateTO toStateTO(State state) {
 		return new StateTO(state.getIbge(), state.getNome(), state.getSigla(), state.getArea());
 	}
-
+	
 	public static State toEntity(StateTO to) {
 		return new State(to.getIbge(), to.getSigla(), to.getNome(), to.getArea());
 	}

@@ -7,6 +7,6 @@ import br.inatel.dm110.api.ibge.StateTO;
 public interface IbgeLocal {
 
 	public void salvarEstado(StateTO state);
-
+	
 	public List<StateTO> listarTodosEstados();
 }

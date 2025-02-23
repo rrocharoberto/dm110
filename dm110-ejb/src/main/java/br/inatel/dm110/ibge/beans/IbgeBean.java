@@ -23,24 +23,24 @@ public class IbgeBean implements IbgeLocal, IbgeRemote {
 
 	@Inject
 	Logger log;
-
+	
 	@PersistenceContext(unitName = "ibge_pu")
 	private EntityManager em;
-
+	
 	@Override
 	public void salvarEstado(StateTO to) {
 		log.info("Saving the state: " + to.getNome() + " to the database");
 		State entity = IbgeConverter.toEntity(to);
 		em.persist(entity);
 	}
-
+	
 	@Override
 	public List<StateTO> listarTodosEstados() {
 		log.info("Getting all State objects from database");
-
+		
 		String hql = "select s from State s";
 		TypedQuery<State> query = em.createQuery(hql, State.class);
-
+		
 		return IbgeConverter.toTOList(query.getResultList());
 	}
 }
