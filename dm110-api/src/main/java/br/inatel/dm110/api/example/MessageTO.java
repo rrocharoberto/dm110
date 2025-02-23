@@ -17,7 +17,7 @@ public class MessageTO implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-
+	
 	private String firstName;
 	private String lastName;
 	private String message;

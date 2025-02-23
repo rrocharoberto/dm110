@@ -20,7 +20,7 @@ public class HelloResource implements HelloInterface {
 
 	@Inject
 	Logger log;
-
+	
 	@EJB
 	private HelloLocal helloBean;
 
