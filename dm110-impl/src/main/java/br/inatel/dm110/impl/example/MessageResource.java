@@ -62,11 +62,11 @@ public class MessageResource implements MessageInterface {
 	@Override
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public MessageTO postMessage(@FormParam("first") String first, @FormParam("last") String last) {
-		log.info("Storing form message: " + first + " " + last);
+	public MessageTO postMessage(@FormParam("first") String firstName, @FormParam("last") String lastName) {
+		log.info("Storing form message: " + firstName + " " + lastName);
 		MessageTO message = new MessageTO();
-		message.setFirstName(first);
-		message.setLastName(last);
+		message.setFirstName(firstName);
+		message.setLastName(lastName);
 		int id = dao.storeNewMessage(message);
 		return message;
 	}

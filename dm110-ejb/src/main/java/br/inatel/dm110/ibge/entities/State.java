@@ -10,6 +10,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "ESTADO")
+
 @Getter
 @Setter
 @NoArgsConstructor

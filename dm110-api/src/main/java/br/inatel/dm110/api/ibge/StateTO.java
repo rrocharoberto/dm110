@@ -1,5 +1,7 @@
 package br.inatel.dm110.api.ibge;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class StateTO {
+public class StateTO implements Serializable {
 	private int ibge;
 	private String nome;
 	private String sigla;

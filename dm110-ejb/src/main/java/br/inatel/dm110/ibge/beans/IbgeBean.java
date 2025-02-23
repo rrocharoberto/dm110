@@ -14,7 +14,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
-@Stateless	
+@Stateless
 @Local(IbgeLocal.class)
 public class IbgeBean implements IbgeLocal {
 
@@ -26,14 +26,14 @@ public class IbgeBean implements IbgeLocal {
 	
 	@Override
 	public void salvarEstado(StateTO to) {
-		log.info("Salvando o state: " + to.getNome());
+		log.info("Saving the state: " + to.getNome() + " to the database");
 		State entity = IbgeConverter.toEntity(to);
 		em.persist(entity);
 	}
 	
 	@Override
 	public List<StateTO> listarTodosEstados() {
-		log.info("Consultando todos os objetos State");
+		log.info("Getting all State objects from database");
 		
 		String hql = "select s from State s";
 		TypedQuery<State> query = em.createQuery(hql, State.class);

@@ -19,13 +19,16 @@ public class HelloResource implements HelloInterface {
 	@Inject
 	Logger log;
 
+	@EJB
+	private HelloLocal helloBean;
+
 	@Override
 	@GET
 	@Path("/status")
 	@Produces(MediaType.TEXT_HTML)
 	public String status() {
-		log.info("Status endpoint called.");
-		return "Status ok.";
+		log.info("Running status endpoint");
+		return helloBean.status();
 	}
 
 	@Override
@@ -33,10 +36,7 @@ public class HelloResource implements HelloInterface {
 	@Path("/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public MessageTO sayHello(@PathParam("name") String name) {
-		log.info("Saying hello to: " + name);
-
-		MessageTO msg = new MessageTO(name, "");
-		msg.setMessage("Hello " + name + "!");
-		return msg;
+		log.info("Running sayHello endpoint with name: " + name);
+		return helloBean.sayHello(name);
 	}
 }
