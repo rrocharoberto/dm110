@@ -13,6 +13,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class MessageTO implements Serializable {
 
+	private static final long serialVersionUID = -5106558229027863908L;
+
 	public MessageTO(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;

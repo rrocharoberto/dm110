@@ -10,7 +10,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import br.inatel.dm110.api.example.MessageTO;
-import br.inatel.dm110.api.example.StandardError;
 
 public class MessageClient {
 
@@ -32,20 +31,11 @@ public class MessageClient {
 	}
 
 	public static MessageTO getMessage(Integer id) {
-		Response response = client
+		return client
 			.target(REST_BASE_URI)
 			.path(String.valueOf(id))
 			.request(MediaType.APPLICATION_JSON)
-			.get(Response.class);
-		
-		if (response.getStatus() == Response.Status.OK.getStatusCode()) {
-			return response.readEntity(MessageTO.class);
-		} else if (response.getStatus() == Response.Status.BAD_REQUEST.getStatusCode()) {
-			System.out.println(response.readEntity(StandardError.class));
-		} else {
-			System.out.println(response.getStatusInfo());
-		}
-		return null;
+			.get(MessageTO.class);
 	}
 	
 	public static Response createMessage(MessageTO msg) {
