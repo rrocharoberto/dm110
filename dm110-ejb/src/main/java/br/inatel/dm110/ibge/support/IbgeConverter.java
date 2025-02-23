@@ -9,11 +9,13 @@ import br.inatel.dm110.ibge.entities.State;
 public class IbgeConverter {
 
 	public static StateTO toStateTO(State state) {
-		return new StateTO(state.getIbge(), state.getNome(), state.getSigla(), state.getArea());
+		// return new StateTO(state.getIbge(), state.getNome(), state.getSigla(), state.getArea());
+		return null; //remover
 	}
 	
 	public static State toEntity(StateTO to) {
-		return new State(to.getIbge(), to.getSigla(), to.getNome(), to.getArea());
+		// return new State(to.getIbge(), to.getSigla(), to.getNome(), to.getArea());
+		return null; //remover
 	}
 
 	public static List<StateTO> toTOList(List<State> stateList) {

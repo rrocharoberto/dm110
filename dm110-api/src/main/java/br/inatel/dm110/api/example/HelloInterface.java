@@ -2,7 +2,7 @@ package br.inatel.dm110.api.example;
 
 public interface HelloInterface {
 
-	String status();
+	// String status();
 
-	MessageTO sayHello(String name);
+	// MessageTO sayHello(String name);
 }
