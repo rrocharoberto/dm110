@@ -10,24 +10,14 @@ import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 import jakarta.jms.TextMessage;
 
-@MessageDriven(activationConfig = {
-		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Topic"),
-		@ActivationConfigProperty(propertyName = "destination", propertyValue = "java:/jms/topic/dm110topic") })
+//TODO: configure annotation
 public class HelloTopicMDB implements MessageListener {
 
 	@Override
 	public void onMessage(Message message) {
 		//processamento da mensagem
-		log.info("Chamou o  método onMessage: " + message);
-		try {
-			if (message instanceof TextMessage) {
-				TextMessage txtMessage = (TextMessage) message;
-				String text = txtMessage.getText();
-				log.info("Mensagem recebida do tópico: " + text);
-			}
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
+		log.info("Running method onMessage: " + message);
+		//TODO: implement it
 	}
 	
 	@Inject

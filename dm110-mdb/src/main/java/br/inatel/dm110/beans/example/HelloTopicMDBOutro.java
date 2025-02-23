@@ -16,6 +16,7 @@ public class HelloTopicMDBOutro implements MessageListener {
 	@Override
 	public void onMessage(Message message) {
 		//processamento da mensagem
+		log.info("Running method onMessage: " + message);
 		//TODO: implement it
 	}
 	

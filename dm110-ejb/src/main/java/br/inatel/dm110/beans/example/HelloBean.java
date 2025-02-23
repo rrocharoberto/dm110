@@ -15,12 +15,6 @@ public class HelloBean implements HelloLocal, HelloRemote {
 	@Inject
 	Logger log;
 	
-	@EJB
-	HelloQueueSender queueSender;
-	
-	@EJB
-	HelloTopicSender topicSender;
-	
 	public String status() {
 		log.info("Running status method in HelloBean.");
 		return "Hello Session Bean Status ok.";
@@ -31,8 +25,7 @@ public class HelloBean implements HelloLocal, HelloRemote {
 		log.info("Running sayHello method in HelloBean with name: " + name);
 		String msgStr = "Hello Session Bean greeting " + name + " !";
 
-		queueSender.sendTextMessage("Hello from HelloBean!");
-		topicSender.sendTextMessage("Hello from HelloBean!!!");
+		//TODO: send the message to somewhere (queue and/or topic)
 
 		MessageTO msg = new MessageTO(name, "");
 		msg.setMessage(msgStr);
