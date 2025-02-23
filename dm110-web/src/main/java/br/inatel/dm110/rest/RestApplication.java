@@ -20,7 +20,7 @@ public class RestApplication extends Application {
 
 		// register the classes to publish the rest service
 		classes.add(IbgeResource.class);
-		classes.add(HelloResource.class); 
+		classes.add(HelloResource.class);
 		classes.add(MessageResource.class);
 		classes.add(MessageExceptionMapper.class);
 		return classes;
