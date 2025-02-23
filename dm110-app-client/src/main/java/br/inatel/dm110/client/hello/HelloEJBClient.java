@@ -18,7 +18,7 @@ public class HelloEJBClient {
 		final HelloRemote hello = lookupSessionHello();
 		if (hello != null) {
 			// invoca a chamada no objeto remoto
-			MessageTO result = hello.sayHello("Ricardo");
+			MessageTO result = hello.sayHello("Roberto");
 			System.out.println("Resultado da chamada ao session bean: " + result);
 		} else {
 			System.out.println("Objeto session bean remoto não encontrado.");
