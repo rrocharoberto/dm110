@@ -47,7 +47,7 @@ public class HelloServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String name = req.getParameter("name");
-		log.info("Running doPost with nameSaved: " + name);
+		log.info("Running doPost with name: " + name);
 
 		req.setAttribute("nameSaved", name); // usado na página JSP
 

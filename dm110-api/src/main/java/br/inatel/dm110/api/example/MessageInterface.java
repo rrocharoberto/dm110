@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public interface MessageInterface {
 
-	 MessageTO getMessage(Integer id);
+	MessageTO getMessage(Integer id);
 
 	int storeNewMessage(MessageTO message);
 
