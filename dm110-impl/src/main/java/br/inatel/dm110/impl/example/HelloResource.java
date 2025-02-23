@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import br.inatel.dm110.api.example.HelloInterface;
 import br.inatel.dm110.api.example.MessageTO;
+import br.inatel.dm110.interfaces.example.HelloLocal;
+import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
