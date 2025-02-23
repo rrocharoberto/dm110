@@ -17,7 +17,7 @@
 	<c:if test="${not empty name}">
 		<h2>Current name: ${name}</h2>
 	</c:if>
-	<h2>Message from the bean: ${greetings}</h2>
+	<h2>Greetings message: ${greetings}</h2>
 	<h3>Current date: ${currentDate}</h3>
 
 	<a href="/dm110-web/form_servlet.html">Click here to go back</a>
