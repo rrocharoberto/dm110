@@ -24,7 +24,7 @@ public class HelloResource implements HelloInterface {
 	@Path("/status")
 	@Produces(MediaType.TEXT_HTML)
 	public String status() {
-		log.info("Status endpoint called.");
+		log.info("Running status endpoint");
 		return "Status ok.";
 	}
 
@@ -33,7 +33,7 @@ public class HelloResource implements HelloInterface {
 	@Path("/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public MessageTO sayHello(@PathParam("name") String name) {
-		log.info("Saying hello to: " + name);
+		log.info("Running sayHello endpoint with name: " + name);
 
 		MessageTO msg = new MessageTO(name, "");
 		msg.setMessage("Hello " + name + "!");
