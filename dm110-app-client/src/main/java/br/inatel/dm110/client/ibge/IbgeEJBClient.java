@@ -17,28 +17,28 @@ public class IbgeEJBClient {
 
 	private static void invokeSessionBean() throws NamingException {
 
-		final IbgeRemote ibgeBean = lookupSessionHello();
-		if (ibgeBean != null) {
-			// invoca a chamada no objeto remoto
-			List<StateTO> result = ibgeBean.listarTodosEstados();
-			System.out.println("Resultado da chamada ao session bean: " + result);
-		} else {
-			System.out.println("Objeto session bean remoto não encontrado.");
-		}
+		// final IbgeRemote ibgeBean = lookupSessionHello();
+		// if (ibgeBean != null) {
+		// 	// invoca a chamada no objeto remoto
+		// 	List<StateTO> result = ibgeBean.listarTodosEstados();
+		// 	System.out.println("Resultado da chamada ao session bean: " + result);
+		// } else {
+		// 	System.out.println("Objeto session bean remoto não encontrado.");
+		// }
 	}
 
-	private static IbgeRemote lookupSessionHello() throws NamingException {
-		// faz o lookup do EJB (objeto) session bean
+	// private static IbgeRemote lookupSessionHello() throws NamingException {
+	// 	// faz o lookup do EJB (objeto) session bean
 
-		String appName = "dm110-ear-1.0";
-		String moduleName = "dm110-ejb-1.0";
-		String beanName = "IbgeBean";
-		String interfaceName = IbgeRemote.class.getName();
+	// 	String appName = "dm110-ear-1.0";
+	// 	String moduleName = "dm110-ejb-1.0";
+	// 	String beanName = "IbgeBean";
+	// 	String interfaceName = IbgeRemote.class.getName();
 
-		// nome completo do EJB
-		String jndiName = "ejb:" + appName + "/" + moduleName + "/" + beanName + "!" + interfaceName;
-		System.out.println("JNDI Name: " + jndiName);
-		Context context = ClientHelper.createInitialContext();
-		return (IbgeRemote) context.lookup(jndiName);
-	}
+	// 	// nome completo do EJB
+	// 	String jndiName = "ejb:" + appName + "/" + moduleName + "/" + beanName + "!" + interfaceName;
+	// 	System.out.println("JNDI Name: " + jndiName);
+	// 	Context context = ClientHelper.createInitialContext();
+	// 	return (IbgeRemote) context.lookup(jndiName);
+	// }
 }

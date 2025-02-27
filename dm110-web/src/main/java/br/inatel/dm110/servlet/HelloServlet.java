@@ -21,12 +21,12 @@ import br.inatel.dm110.interfaces.example.HelloLocal;
 public class HelloServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -24118939727042992L;
-
+	
 	@Inject
 	Logger log;
-
-	// @EJB
-	// private HelloLocal helloBean;
+	
+	@EJB
+	private HelloLocal helloBean;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,14 +36,14 @@ public class HelloServlet extends HttpServlet {
 		if (name != null) {
 			log.info("name: " + name);
 			req.setAttribute("name", name); // atributo para usar na página de resposta
-			// req.setAttribute("greetings", helloBean.sayHello(name));
+			req.setAttribute("greetings", helloBean.sayHello(name));
 		} else {
 			HttpSession session = req.getSession();
 			Object nameSaved = session.getAttribute("nameSaved");
 			if (nameSaved != null) {
 				log.info("nameSaved: " + nameSaved);
 				req.setAttribute("previousName", nameSaved);
-				// req.setAttribute("greetings", helloBean.sayHello(nameSaved.toString()));
+				req.setAttribute("greetings", helloBean.sayHello(nameSaved.toString()));
 			}
 		}
 		req.setAttribute("currentDate", new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new java.util.Date()));
