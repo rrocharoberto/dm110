@@ -1,5 +1,6 @@
 package br.inatel.dm110.beans.example;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import jakarta.ejb.ActivationConfigProperty;
@@ -10,14 +11,24 @@ import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 import jakarta.jms.TextMessage;
 
-//TODO: configure annotation
+@MessageDriven(activationConfig = {
+		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue"),
+		@ActivationConfigProperty(propertyName = "destination", propertyValue = "java:/jms/queue/dm110queue") })
 public class HelloQueueMDB implements MessageListener {
 
 	@Override
 	public void onMessage(Message message) {
 		// processamento da mensagem
 		log.info("Running method onMessage: " + message);
-		//TODO: implement it
+		try {
+			if (message instanceof TextMessage) {
+				TextMessage txtMessage = (TextMessage) message;
+				String text = txtMessage.getText();
+				log.info("Message received from queue: " + text);
+			}
+		} catch (JMSException e) {
+			log.log(Level.SEVERE, "Error processing message: " + message, e);
+		}
 	}
 
 	@Inject

@@ -4,6 +4,7 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 
 import br.inatel.dm110.api.example.MessageTO;
+import br.inatel.dm110.interfaces.example.HelloLocal;
 import br.inatel.dm110.interfaces.example.HelloRemote;
 
 public class HelloEJBClient {
