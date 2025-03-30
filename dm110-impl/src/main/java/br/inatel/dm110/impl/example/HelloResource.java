@@ -25,7 +25,7 @@ public class HelloResource implements HelloInterface {
 	@Produces(MediaType.TEXT_HTML)
 	public String status() {
 		log.info("Running status endpoint");
-		return "Status ok.";
+		return "Status ok modificado.";
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class HelloResource implements HelloInterface {
 		log.info("Running sayHello endpoint with name: " + name);
 
 		MessageTO msg = new MessageTO(name, "");
-		msg.setMessage("Hello " + name + "!");
+		msg.setMessage("Hello " + name + "! diferente");
 		return msg;
 	}
 }
