@@ -27,7 +27,7 @@ public class MessageClient {
 		System.out.println("Result from GET (non existing object): " + getMessage(100));
 
 		System.out.println("Result from getAllMessages(): ");
-		getAllMessages().stream().forEach(System.out::println);
+		//getAllMessages().stream().forEach(System.out::println);
 	}
 
 	public static MessageTO getMessage(Integer id) {
@@ -39,18 +39,18 @@ public class MessageClient {
 	}
 	
 	public static Response createMessage(MessageTO msg) {
-	    return client
-	      .target(REST_BASE_URI)
-	      .request(MediaType.APPLICATION_JSON)
-	      .post(Entity.entity(msg, MediaType.APPLICATION_JSON));
+		return client
+			.target(REST_BASE_URI)
+			.request(MediaType.APPLICATION_JSON)
+			.post(Entity.entity(msg, MediaType.APPLICATION_JSON));
 	}
 
-	public static List<MessageTO> getAllMessages() {
-		List<MessageTO> list = client
-            .target(REST_BASE_URI)
-            .request(MediaType.APPLICATION_JSON)
-            .get(Response.class)
-            .readEntity(new GenericType<List<MessageTO>>() {});
-		return list;
-	}
+	// public static List<MessageTO> getAllMessages() {
+	// 	List<MessageTO> list = client
+	// 		.target(REST_BASE_URI)
+	// 		.request(MediaType.APPLICATION_JSON)
+	// 		.get(Response.class)
+	// 		.readEntity(new GenericType<List<MessageTO>>() {});
+	// 	return list;
+	// }
 }
