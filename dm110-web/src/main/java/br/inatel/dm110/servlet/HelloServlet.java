@@ -1,37 +1,66 @@
 package br.inatel.dm110.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.logging.Logger;
 
-import javax.ejb.EJB;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import br.inatel.dm110.hello.interfaces.HelloRemote;
+import jakarta.inject.Inject;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/helloServlet")
 public class HelloServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -24118939727042992L;
 	
-	@EJB(lookup="ejb:dm110-ear-1.0/dm110-ejb-1.0/HelloBean!br.inatel.dm110.hello.interfaces.HelloRemote")
-	private HelloRemote helloBean;
+	@Inject
+	Logger log;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String name = req.getParameter("name");
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
-		out.println("<h1>Hello from Servlet!!!</h1>");
-		if(name == null) {
-			out.println("<h2>No name to say hi</h2>");
+		log.info("Running doGet with name: " + name);
+
+		if (name != null) {
+			log.info("name: " + name);
+			req.setAttribute("name", name); // atributo para usar na página de resposta
+			req.setAttribute("greetings", "Hi!");
 		} else {
-			out.println("<h2>" + helloBean.sayHello(name) + "</h2>");
+			HttpSession session = req.getSession();
+			Object nameSaved = session.getAttribute("nameSaved");
+			if (nameSaved != null) {
+				log.info("nameSaved: " + nameSaved);
+				req.setAttribute("previousName", nameSaved);
+				req.setAttribute("greetings", "Hello!");
+			}
 		}
-		out.println("Current date: " + new java.util.Date());
+		//req.setAttribute("currentDate", new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new java.util.Date()));
+		forwardResponse("/hello_get_result.jsp", req, resp);
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String name = req.getParameter("name");
+		log.info("Running doPost with name: " + name);
+
+		req.setAttribute("nameSaved", name); // usado na página JSP
+
+		HttpSession session = req.getSession();
+		session.setAttribute("nameSaved", name); //stateful: will be used in next servlet call
+
+		forwardResponse("/hello_post_result.jsp", req, resp);
+	}
+
+	private void forwardResponse(String path, HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		ServletContext context = getServletContext();
+		RequestDispatcher disp = context.getRequestDispatcher(path);
+		disp.forward(req, resp); // direciona para uma página JSP.
+	}
 }
