@@ -60,6 +60,7 @@
 				<version>3.2.0</version>
 				<configuration>
 					<mainClass>br.inatel.dm110.client.MessageClient</mainClass>
+					<!--mainClass>br.inatel.dm110.client.hello.HelloEJBClient</mainClass-->
 				</configuration>
 			</plugin>
 		</plugins>
