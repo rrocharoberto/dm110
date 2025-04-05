@@ -21,8 +21,8 @@ public class HelloResource implements HelloInterface {
 	@Inject
 	Logger log;
 	
-	// @EJB
-	// private HelloLocal helloBean;
+	@EJB
+	private HelloLocal helloBean;
 
 	@Override
 	@GET
@@ -30,8 +30,8 @@ public class HelloResource implements HelloInterface {
 	@Produces(MediaType.TEXT_HTML)
 	public String status() {
 		log.info("Running status endpoint");
-		return "Status ok.";
-		// return helloBean.status();
+		// return "Status ok.";
+		return helloBean.status();
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class HelloResource implements HelloInterface {
 
 		MessageTO msg = new MessageTO(name, "");
 		msg.setMessage("Hello " + name + "!");
-		return msg;
-		// return helloBean.sayHello(name);
+		// return msg;
+		return helloBean.sayHello(name);
 	}
 }
