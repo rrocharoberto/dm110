@@ -14,30 +14,30 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
-@Stateless
-@Local(IbgeLocal.class)
-public class IbgeBean implements IbgeLocal {
-
+// @Stateless
+// @Local(IbgeLocal.class)
+public class IbgeBean // implements IbgeLocal
+{
 	@Inject
 	Logger log;
 	
-	@PersistenceContext(unitName = "ibge_pu")
-	private EntityManager em;
+	// @PersistenceContext(unitName = "ibge_pu")
+	// private EntityManager em;
 	
-	@Override
-	public void salvarEstado(StateTO to) {
-		log.info("Saving the state: " + to.getNome() + " to the database");
-		State entity = IbgeConverter.toEntity(to);
-		em.persist(entity);
-	}
+	// @Override
+	// public void salvarEstado(StateTO to) {
+	// 	log.info("Saving the state: " + to.getNome() + " to the database");
+	// 	State entity = IbgeConverter.toEntity(to);
+	// 	em.persist(entity);
+	// }
 	
-	@Override
-	public List<StateTO> listarTodosEstados() {
-		log.info("Getting all State objects from database");
+	// @Override
+	// public List<StateTO> listarTodosEstados() {
+	// 	log.info("Getting all State objects from database");
 		
-		String hql = "select s from State s";
-		TypedQuery<State> query = em.createQuery(hql, State.class);
+	// 	String hql = "select s from State s";
+	// 	TypedQuery<State> query = em.createQuery(hql, State.class);
 		
-		return IbgeConverter.toTOList(query.getResultList());
-	}
+	// 	return IbgeConverter.toTOList(query.getResultList());
+	// }
 }
