@@ -9,6 +9,7 @@ import jakarta.ws.rs.core.Application;
 import br.inatel.dm110.impl.IbgeResource;
 import br.inatel.dm110.impl.example.HelloResource;
 import br.inatel.dm110.impl.example.MessageResource;
+import br.inatel.dm110.impl.example.TestResource;
 import br.inatel.dm110.impl.example.support.MessageExceptionMapper;
 
 @ApplicationPath("/api")
@@ -20,6 +21,7 @@ public class RestApplication extends Application {
 
 		// register the classes to publish the rest service
 		// classes.add(IbgeResource.class);
+		classes.add(TestResource.class);
 		classes.add(HelloResource.class);
 		classes.add(MessageResource.class);
 		classes.add(MessageExceptionMapper.class);
